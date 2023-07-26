@@ -147,14 +147,14 @@
       <el-form :model="news" ref="news" :rules="rules">
         <el-form-item
           prop="channel_currency_id"
-          label="货币"
+          label="通道货币"
           :label-width="formLabelWidth"
         >
           <el-select v-model="news.channel_currency_id" placeholder="货币">
             <el-option
               v-for="item in currencyList"
               :key="item.id"
-              :label="item.currency_name"
+              :label="item.channel_currency_name"
               :value="item.id"
             ></el-option>
           </el-select>
@@ -324,7 +324,9 @@ import {
   addBusinessChannelConfig,
   modBusinessChannelConfig,
 } from "@/api/merchantChannel";
-import { getsChannelCurrency } from "@/api/currency";
+import {
+  getsChannelCurrency,
+} from "@/api/currencyChannel";
 import {
   channelOpen,
   bySellType,

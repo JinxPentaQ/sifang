@@ -22,8 +22,6 @@
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="currency_name" label="币种名称"></el-table-column>
         <el-table-column prop="currency_code" label="币种Code"></el-table-column>
-        <el-table-column prop="channel_name" label="通道名称"></el-table-column>
-        <el-table-column prop="channel_code" label="通道code"></el-table-column>
         <el-table-column prop="desc" label="币种描述"></el-table-column>
         <el-table-column label="操作" align="left">
           <template slot-scope="scope">
@@ -71,32 +69,14 @@
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="channel_id"
-              label="通道"
-              :label-width="formLabelWidth"
-            >
-              <el-select v-model="news.channel_id" placeholder="通道">
-                <el-option
-                  v-for="item in channelList"
-                  :key="item.id"
-                  :label="item.channel_name"
-                  :value="item.id"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="22">
-            <el-form-item
-              prop="currency_id"
-              label="币种Code"
+              prop="code"
+              label="币种code"
               :label-width="formLabelWidth"
             >
               <el-input
-                v-model="news.currency_id"
+                v-model="news.code"
                 autocomplete="off"
-                placeholder="币种Code"
+                placeholder="币种code"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -129,9 +109,9 @@
 
 <script>
 import {
-  getsChannelCurrency,
-  addChannelCurrency,
-  delChannelCurrency,
+  getsCurrency,
+  addCurrency,
+  delCurrency,
 } from "@/api/currency";
 import {
   getsChannel,
@@ -148,17 +128,15 @@ export default {
       listLoading: false,
       news: {
         name: "",
-        channel_id: "",
-        currency_id: "",
+        code: "",
         desc: "",
       },
       formLabelWidth: "120px",
       LabelWidth: "140px",
       newsFormVisible: false,
       rules: {
-        name: [{ required: true, message: "请输入通道名称", trigger: "blur" }],
-        channel_id: [{ required: true, message: "请选择渠道", trigger: "change" }],
-        currency_id: [{ required: true, message: "请输入币种ID", trigger: "blur" }],
+        name: [{ required: true, message: "请输入币种名称", trigger: "blur" }],
+        code: [{ required: true, message: "请输入币种code", trigger: "blur" }],
       },
       statusOptions: [
         {
@@ -200,7 +178,7 @@ export default {
     // 获取用户列表
     getData() {
       this.listLoading = true;
-      getsChannelCurrency()
+      getsCurrency()
         .then((res) => {
           this.listLoading = false;
           this.tableData = res;
@@ -213,7 +191,7 @@ export default {
     addSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          addChannelCurrency(this.news)
+          addCurrency(this.news)
             .then(() => {
               this.$message({
                 message: "操作成功",
@@ -231,12 +209,12 @@ export default {
     },
     //删除用户
     deleteHandle(id) {
-      this.$confirm("确认删除该通道吗?", "提示", {
+      this.$confirm("确认删除货币吗?", "提示", {
         type: "warning",
       })
         .then(() => {
           this.listLoading = true;
-          delChannelCurrency({ id })
+          delCurrency({ id })
             .then((res) => {
               this.$message({
                 message: "操作成功",

@@ -21,6 +21,7 @@ import {
   userList,
   channel,
   currency,
+  currencyChannel,
   permissionList,
   testOrder,
 } from "@/router/const.js";
@@ -112,6 +113,7 @@ let routes = [
           { path: "/userList", component: userList, name: "用户管理" },
           { path: "/permission", component: permissionList, name: "权限管理" },
           { path: "/channel", component: channel, name: "通道管理" },
+          { path: "/currencyChannel", component: currencyChannel, name: "币种通道管理" },
           { path: "/currency", component: currency, name: "币种管理" },
           { path: "/testOrder", component: testOrder, name: "测试下单" },
         ],

@@ -31,6 +31,7 @@ import roleList from "@/views/setting/roleList.vue";
 import userList from "@/views/setting/userList.vue";
 import channel from "@/views/setting/channel.vue";
 import currency from "@/views/setting/currency.vue";
+import currencyChannel from "@/views/setting/currencyChannel.vue";
 import permissionList from "@/views/setting/permissionList.vue";
 import testOrder from "@/views/setting/testOrder.vue";
 
@@ -58,6 +59,7 @@ export {
   userList,
   channel,
   currency,
+  currencyChannel,
   permissionList,
   testOrder,
 };

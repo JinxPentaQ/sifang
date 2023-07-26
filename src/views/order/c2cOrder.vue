@@ -82,11 +82,8 @@
             </el-tooltip>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="buyer_user_name"
-          label="买方"
-          align="left"
-        ></el-table-column>
+        <el-table-column prop="channel_currency_name" label="通道名称" align="left">
+        </el-table-column>
         <el-table-column
           prop="buy_fee"
           label="买方手续费"

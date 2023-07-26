@@ -93,7 +93,7 @@
 
 <script>
 import { getBusinessWallet, addBusinessWallet } from "@/api/merchant";
-import { getsChannelCurrency } from "@/api/currency";
+import { getsCurrency } from "@/api/currency";
 export default {
   data() {
     return {
@@ -137,7 +137,7 @@ export default {
     },
     // 获取货币列表
     getCurreny() {
-      getsChannelCurrency()
+      getsCurrency()
         .then((res) => {
           this.currencyList = res;
         })
