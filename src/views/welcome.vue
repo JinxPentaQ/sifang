@@ -1,5 +1,6 @@
 <template>
   <section>
+    
     <h2>欢迎登录！</h2>
     <!-- <el-row :gutter="70">
       <el-col :span="6" v-for="item in cardData" :key="item.icon">
@@ -1772,11 +1773,14 @@ export default {
   mounted() {
     //初始化要放在mounted方法中
 
-    this.getUsers();
+    // this.getUsers();
   }
 };
 </script>
 <style>
+h2 {
+  margin: 20px;
+}
 .el-card__body {
   padding: 0;
 }

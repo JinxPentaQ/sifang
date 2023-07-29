@@ -52,14 +52,8 @@ export default {
     onSubmit() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          if(this.form.old_pwd !== this.form.new_pwd) {
-            this.$message({
-              message: "两次密码输入不一致",
-              type: "warning"
-            });
-          }
           this.logining = true;
-          modAdminPwd({pwd: this.form.old_pwd,})
+          modAdminPwd({pwd: this.$md5(this.$md5(this.$md5(this.form.pwd))), new_pwd: this.form.new_pwd})
             .then(res => {
               this.logining = false;
               this.$message({

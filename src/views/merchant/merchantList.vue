@@ -233,19 +233,19 @@
       <el-button
         type="text"
         size="mini"
-        @click="handleResetPwd(scope.row.id, '0')"
+        @click="handleResetPwd(detail.id, '0')"
         >重置密码</el-button
       >
       <el-button
         type="text"
         size="mini"
-        @click="handleResetSerect(scope.row.id)"
+        @click="handleResetSerect(detail.id)"
         >重置密钥</el-button
       >
       <el-button
         type="text"
         size="mini"
-        @click="handleResetGoogle(scope.row.id, '1')"
+        @click="handleResetGoogle(detail.id, '1')"
         >重置Google密钥</el-button
       >
     </el-dialog>

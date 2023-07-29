@@ -34,7 +34,7 @@ let routes = [
     iconCls: "el-icon-message", //图标样式class
     children: [
       //欢迎页
-      { path: "/welcome", component: welcome, name: "统计",  hidden: true },
+      { path: "/welcome", component: welcome, name: "欢迎页",  hidden: true },
       {
         path: "/changePwd",
         component: changePwd,

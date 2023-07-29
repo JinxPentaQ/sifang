@@ -4,7 +4,7 @@
       <el-col
         class="logo"
         style="width: 227px; cursor: pointer"
-        @click.native="$router.push({ path: '/' })"
+        @click.native="$router.push({ path: '/welcome' })"
       >
         后台管理系统
       </el-col>
