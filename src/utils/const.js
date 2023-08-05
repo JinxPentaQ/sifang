@@ -261,3 +261,19 @@ export const bySellTypeOptions = [
     value: bySellType.platform,
   },
 ]
+
+export const  buyChannelRetType = {
+  info: 1, // 1信息 2收银台
+  desk: 2,
+}
+
+export const buyChannelRetTypeOptions = [
+  {
+    text: '信息',
+    value: buyChannelRetType.info,
+  },
+  {
+    text: '收银台',
+    value: buyChannelRetType.desk,
+  },
+]

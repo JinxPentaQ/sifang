@@ -60,6 +60,22 @@
           min-width="100"
         ></el-table-column>
         <el-table-column
+          prop="buy_channel_ret_type"
+          label="购买平台通道返回类型"
+          align="left"
+          min-width="100"
+        >
+          <template slot-scope="scope">
+            {{ getOptionsText(buyChannelRetTypeOptions , scope.row.buy_channel_ret_type) }}
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="buy_channel_code"
+          label="购买平台通道描述"
+          align="left"
+          min-width="100"
+        ></el-table-column>
+        <el-table-column
           prop="sell_rate"
           label="	卖出费率"
           align="left"
@@ -84,6 +100,22 @@
         <el-table-column
           prop="sell_min_amount"
           label="卖出最小费率"
+          align="left"
+          min-width="100"
+        ></el-table-column>
+        <el-table-column
+          prop="sell_channel_ret_type"
+          label="卖出平台通道返回类型"
+          align="left"
+          min-width="100"
+        >
+          <template slot-scope="scope">
+            {{ getOptionsText(buyChannelRetTypeOptions , scope.row.sell_channel_ret_type) }}
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="sell_channel_code"
+          label="卖出平台通道描述"
           align="left"
           min-width="100"
         ></el-table-column>
@@ -184,6 +216,30 @@
           ></el-input>
         </el-form-item>
         <el-form-item
+          prop="buy_channel_ret_type"
+          label="购买平台通道返回类型"
+          :label-width="formLabelWidth"
+        >
+          <el-select v-model="edit.buy_channel_ret_type" placeholder="购买平台通道返回类型">
+            <el-option
+              v-for="item in buyChannelRetTypeOptions"
+              :key="item.value"
+              :label="item.text"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          prop="buy_channel_code"
+          label="购买平台通道描述"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="edit.buy_channel_code"
+            placeholder="购买平台通道描述"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
           prop="sell_rate"
           label="卖出费率"
           :label-width="formLabelWidth"
@@ -224,6 +280,30 @@
             placeholder="卖出最小费率"
           ></el-input>
         </el-form-item>
+        <el-form-item
+          prop="sell_channel_ret_type"
+          label="	卖出平台通道返回类型 "
+          :label-width="formLabelWidth"
+        >
+          <el-select v-model="edit.sell_channel_ret_type" placeholder="卖出平台通道返回类型 ">
+            <el-option
+              v-for="item in buyChannelRetTypeOptions"
+              :key="item.value"
+              :label="item.text"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          prop="sell_channel_code"
+          label="卖出平台通道描述"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="edit.sell_channel_code"
+            placeholder="卖出平台通道描述"
+          ></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" size="mini" @click="editSubmit('edit')"
@@ -249,6 +329,7 @@ import {
   bySellType,
   channelOpenOptions,
   bySellTypeOptions,
+  buyChannelRetTypeOptions,
 } from "@/utils/const";
 import { getOptionsText } from "@/utils/func";
 export default {
@@ -264,7 +345,7 @@ export default {
       pageSize: 10,
       listLoading: false,
       labelWidth: "100px",
-      formLabelWidth: "140px",
+      formLabelWidth: "160px",
       newsFormVisible: false,
       editFormVisible: false,
       //添加平台
@@ -282,6 +363,7 @@ export default {
       bySellType,
       channelOpenOptions,
       bySellTypeOptions,
+      buyChannelRetTypeOptions,
     };
   },
   methods: {
