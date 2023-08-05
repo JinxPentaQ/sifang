@@ -13,18 +13,19 @@ import exchangeOrder from "@/views/order/exchangeOrder.vue";
 //商户
 import merchantList from "@/views/merchant/merchantList.vue";
 import merchantWallet from "@/views/merchant/merchantWallet.vue";
-import merchantWalletRecords from "@/views/merchant/merchantWalletRecords.vue"
-import merchantChannel from '@/views/merchant/merchantChannel.vue'
+import merchantWalletRecords from "@/views/merchant/merchantWalletRecords.vue";
+import merchantChannel from '@/views/merchant/merchantChannel.vue';
 
 //平台
 import platformList from "@/views/platform/platformList.vue";
 import platformWallet from "@/views/platform/platformWallet.vue";
-import platformWalletRecords from "@/views/platform/platformWalletRecords.vue"
+import platformWalletRecords from "@/views/platform/platformWalletRecords.vue";
+import platformChannel from '@/views/platform/platformChannel.vue';
 
 //会员管理
 import memberList from "@/views/member/memberList.vue";
 import memberWallet from "@/views/member/memberWallet.vue";
-import memberWalletRecords from "@/views/member/memberWalletRecords.vue"
+import memberWalletRecords from "@/views/member/memberWalletRecords.vue";
 
 //系统设置
 import roleList from "@/views/setting/roleList.vue";
@@ -52,6 +53,7 @@ export {
   platformList,
   platformWallet,
   platformWalletRecords,
+  platformChannel,
   memberList,
   memberWallet,
   memberWalletRecords,

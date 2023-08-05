@@ -131,6 +131,12 @@
               @click="handleWalletRecords(scope.row.id)"
               >钱包记录</el-button
             >
+            <el-button
+              type="text"
+              size="mini"
+              icon="el-icon-s-shop"
+              @click="handleCurrenyChannel(scope.row.id)"
+              >通道配置</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -376,6 +382,10 @@ export default {
     },
     handleWalletRecords(id) {
       this.$router.push(`/platformWalletRecords/${id}`)
+    },
+      // 通道设置
+      handleCurrenyChannel(id) {
+      this.$router.push(`/platformChannel/${id}`);
     },
   },
   mounted() {

@@ -14,6 +14,7 @@ import {
   platformList,
   platformWallet,
   platformWalletRecords,
+  platformChannel,
   memberList,
   memberWallet,
   memberWalletRecords,
@@ -86,6 +87,7 @@ let routes = [
           },
           { path: "/platformWallet/:id", component: platformWallet, name: "平台钱包" ,  hidden: true,},
           { path: "/platformWalletRecords/:id", component: platformWalletRecords, name: "平台钱包记录",  hidden: true, },
+          { path: "/platformChannel/:id", component: platformChannel, name: "平台通道配置", hidden: true },
         ],
       },
       {
