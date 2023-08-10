@@ -60,14 +60,14 @@
           min-width="50"
         />
         <el-table-column
-          prop="user_name"
+          prop="platform_name"
           label="平台名称"
           align="left"
           min-width="100"
         >
           <template slot-scope="scope">
             <el-button type="text" @click="handleInfo(scope.row)" size="mini">{{
-              scope.row.user_name
+              scope.row.platform_name
             }}</el-button>
           </template>
         </el-table-column>
@@ -201,7 +201,7 @@
       </div>
       <div class="info-item">
         <span>平台名称</span>
-        <span>{{ detail.user_name }}</span>
+        <span>{{ detail.platform_name }}</span>
       </div>
       <div class="info-item">
         <span>平台状态</span>

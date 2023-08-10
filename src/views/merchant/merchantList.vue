@@ -83,7 +83,7 @@
           min-width="100"
         />
         <el-table-column
-          prop="name"
+          prop="business_name"
           label="商户名称"
           align="left"
           min-width="100"
@@ -94,7 +94,7 @@
               icon="el-icon-s-home"
               @click="handleInfo(scope.row.id)"
               size="mini"
-              >{{ scope.row.name }}</el-button
+              >{{ scope.row.business_name }}</el-button
             >
           </template>
         </el-table-column>
@@ -209,7 +209,7 @@
       </div>
       <div class="info-item">
         <span>商户名称</span>
-        <span>{{ detail.name }}</span>
+        <span>{{ detail.business_name }}</span>
       </div>
       <div class="info-item">
         <span>商户状态</span>

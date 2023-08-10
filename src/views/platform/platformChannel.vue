@@ -32,6 +32,12 @@
           min-width="100"
         />
         <el-table-column
+          prop="platform_currency_code"
+          label="平台币种关联"
+          align="left"
+          min-width="100"
+        />
+        <el-table-column
           prop="buy_rate"
           label="购买费率"
           align="left"
@@ -180,6 +186,13 @@
           :label-width="formLabelWidth"
         >
           <el-input v-model="edit.buy_rate" placeholder="购买费率"></el-input>
+        </el-form-item>
+        <el-form-item
+          prop="platform_currency_code"
+          label="平台币种关联"
+          :label-width="formLabelWidth"
+        >
+          <el-input v-model="edit.platform_currency_code" placeholder="平台币种关联"></el-input>
         </el-form-item>
         <el-form-item
           prop="buy_is_open"

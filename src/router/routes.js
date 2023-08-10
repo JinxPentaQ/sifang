@@ -25,6 +25,7 @@ import {
   currencyChannel,
   permissionList,
   testOrder,
+  system,
 } from "@/router/const.js";
 
 let routes = [
@@ -118,6 +119,7 @@ let routes = [
           { path: "/currencyChannel", component: currencyChannel, name: "币种通道管理" },
           { path: "/currency", component: currency, name: "币种管理" },
           { path: "/testOrder", component: testOrder, name: "测试下单" },
+          { path: "/system", component: system, name: "系统配置"  }
         ],
       },
     ],

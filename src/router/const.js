@@ -35,6 +35,7 @@ import currency from "@/views/setting/currency.vue";
 import currencyChannel from "@/views/setting/currencyChannel.vue";
 import permissionList from "@/views/setting/permissionList.vue";
 import testOrder from "@/views/setting/testOrder.vue";
+import system from "@/views/setting/systemSet.vue";
 
 
 export {
@@ -64,4 +65,5 @@ export {
   currencyChannel,
   permissionList,
   testOrder,
+  system,
 };
