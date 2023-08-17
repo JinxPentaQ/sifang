@@ -22,12 +22,35 @@
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="config_name" label="配置名称"></el-table-column>
         <el-table-column prop="config_key" label="配置Key"></el-table-column>
-        <el-table-column prop="config_value" label="配置Value"></el-table-column>
+        <el-table-column prop="config_value" label="配置Value">
+          <template slot-scope="scope">
+            <div v-if="scope.row.config_key === 'app_version'">
+              <p><span>最新版本：</span>{{ JSON.parse(scope.row.config_value).version }}</p>
+              <p><span>下载地址：</span>{{ JSON.parse(scope.row.config_value).download_url }}</p>
+            </div>
+            <div v-if="scope.row.config_key === 'auto_sell_assign'">
+              <el-switch
+                inactive-value="0"
+                active-value="1"
+                v-model="scope.row.config_value"
+                @change="handleSellStatusChange($event)"
+              ></el-switch>
+            </div>
+            <div v-if="scope.row.config_key === 'auto_buy_assign'">
+              <el-switch
+                inactive-value="0"
+                active-value="1"
+                v-model="scope.row.config_value"
+                @change="handleBuyStatusChange($event)"
+              ></el-switch>
+            </div> </template
+        ></el-table-column>
         <el-table-column prop="desc" label="备注"></el-table-column>
         <el-table-column prop="create_time" label="创建时间"></el-table-column>
         <el-table-column label="操作" align="left">
           <template slot-scope="scope">
             <el-button
+              v-if="scope.row.config_key === 'app_version'"
               type="text"
               @click="editHandle(scope.row)"
               size="mini"
@@ -56,15 +79,14 @@
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="config_key"
-              label="配置key"
+              prop="version"
+              label="最新版本"
               :label-width="formLabelWidth"
             >
               <el-input
-                disabled
-                v-model="news.config_key"
+                v-model="news.version"
                 autocomplete="off"
-                placeholder="配置key"
+                placeholder="最新版本"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -72,14 +94,14 @@
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="config_value"
-              label="配置value"
+              prop="download_url"
+              label="下载地址"
               :label-width="formLabelWidth"
             >
               <el-input
-                v-model="news.config_value"
+                v-model="news.download_url"
                 autocomplete="off"
-                placeholder="配置value"
+                placeholder="下载地址"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -98,7 +120,9 @@
 <script>
 import {
   getSysConfig,
-  setSysConfig,
+  setSellConfig,
+  setBuyConfig,
+  setAppVersion,
 } from "@/api/system";
 export default {
   data() {
@@ -118,8 +142,12 @@ export default {
       LabelWidth: "140px",
       newsFormVisible: false,
       rules: {
-        config_value: [{ required: true, message: "请输入配置key", trigger: "blur" }],
-        config_key: [{ required: true, message: "请输入配置value", trigger: "blur" }],
+        config_value: [
+          { required: true, message: "请输入配置key", trigger: "blur" },
+        ],
+        config_key: [
+          { required: true, message: "请输入配置value", trigger: "blur" },
+        ],
       },
     };
   },
@@ -155,7 +183,7 @@ export default {
     addSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          setSysConfig(this.news)
+          setAppVersion(this.news)
             .then(() => {
               this.$message({
                 message: "操作成功",
@@ -174,7 +202,23 @@ export default {
     editHandle(row) {
       this.news = row;
       this.newsFormVisible = true;
-    }
+    },
+    handleSellStatusChange(status) {
+      setSellConfig({ config_value: +status }).then(() => {
+        this.$message({
+          message: "修改成功",
+          type: "success",
+        });
+      });
+    },
+    handleBuyStatusChange(status) {
+      setBuyConfig({ config_value: +status }).then(() => {
+        this.$message({
+          message: "修改成功",
+          type: "success",
+        });
+      });
+    },
   },
   created() {
     this.getData();

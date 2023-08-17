@@ -18,6 +18,7 @@ import {
   memberList,
   memberWallet,
   memberWalletRecords,
+  collectMoneyList,
   roleList,
   userList,
   channel,
@@ -36,7 +37,7 @@ let routes = [
     iconCls: "el-icon-message", //图标样式class
     children: [
       //欢迎页
-      { path: "/welcome", component: welcome, name: "欢迎页",  hidden: true },
+      { path: "/welcome", component: welcome, name: "欢迎页", hidden: true },
       {
         path: "/changePwd",
         component: changePwd,
@@ -48,7 +49,7 @@ let routes = [
         path: "/order",
         component: multiLevelMenu,
         name: "订单管理",
-        icon: 'el-icon-document-copy',
+        icon: "el-icon-document-copy",
         children: [
           {
             path: "/c2cOrder",
@@ -67,12 +68,27 @@ let routes = [
         path: "/merchant",
         component: multiLevelMenu,
         name: "商户管理",
-        icon: 'el-icon-school',
+        icon: "el-icon-school",
         children: [
           { path: "/merchantList", component: merchantList, name: "商户列表" },
-          { path: "/merchantWallet/:id", component: merchantWallet, name: "商户钱包",  hidden: true },
-          { path: "/merchantWalletRecords/:id", component: merchantWalletRecords, name: "商户钱包记录",  hidden: true },
-          { path: "/merchantChannel/:id", component: merchantChannel, name: "商户通道配置", hidden: true },
+          {
+            path: "/merchantWallet/:id",
+            component: merchantWallet,
+            name: "商户钱包",
+            hidden: true,
+          },
+          {
+            path: "/merchantWalletRecords/:id",
+            component: merchantWalletRecords,
+            name: "商户钱包记录",
+            hidden: true,
+          },
+          {
+            path: "/merchantChannel/:id",
+            component: merchantChannel,
+            name: "商户通道配置",
+            hidden: true,
+          },
         ],
       },
       {
@@ -86,11 +102,41 @@ let routes = [
             component: platformList,
             name: "平台列表",
           },
-          { path: "/platformWallet/:id", component: platformWallet, name: "平台钱包" ,  hidden: true,},
-          { path: "/platformWalletRecords/:id", component: platformWalletRecords, name: "平台钱包记录",  hidden: true, },
-          { path: "/platformChannel/:id", component: platformChannel, name: "平台通道配置", hidden: true },
+          {
+            path: "/platformWallet/:id",
+            component: platformWallet,
+            name: "平台钱包",
+            hidden: true,
+          },
+          {
+            path: "/platformWalletRecords/:id",
+            component: platformWalletRecords,
+            name: "平台钱包记录",
+            hidden: true,
+          },
+          {
+            path: "/platformChannel/:id",
+            component: platformChannel,
+            name: "平台通道配置",
+            hidden: true,
+          },
         ],
       },
+
+      {
+        path: "/collectMoney",
+        component: multiLevelMenu,
+        name: "收款信息管理",
+        icon: "el-icon-s-data",
+        children: [
+          {
+            path: "/collectMoneyList",
+            component: collectMoneyList,
+            name: "收款信息",
+          },
+        ],
+      },
+
       {
         path: "/member",
         component: multiLevelMenu,
@@ -102,8 +148,18 @@ let routes = [
             component: memberList,
             name: "会员列表",
           },
-          { path: "/memberWallet/:id", component: memberWallet, name: "会员钱包",   hidden: true,},
-          { path: "/memberWalletRecords/:id", component: memberWalletRecords, name: "会员钱包记录",  hidden: true, },
+          {
+            path: "/memberWallet/:id",
+            component: memberWallet,
+            name: "会员钱包",
+            hidden: true,
+          },
+          {
+            path: "/memberWalletRecords/:id",
+            component: memberWalletRecords,
+            name: "会员钱包记录",
+            hidden: true,
+          },
         ],
       },
       {
@@ -116,10 +172,14 @@ let routes = [
           { path: "/userList", component: userList, name: "用户管理" },
           { path: "/permission", component: permissionList, name: "权限管理" },
           { path: "/channel", component: channel, name: "通道管理" },
-          { path: "/currencyChannel", component: currencyChannel, name: "币种通道管理" },
+          {
+            path: "/currencyChannel",
+            component: currencyChannel,
+            name: "币种通道管理",
+          },
           { path: "/currency", component: currency, name: "币种管理" },
           { path: "/testOrder", component: testOrder, name: "测试下单" },
-          { path: "/system", component: system, name: "系统配置"  }
+          { path: "/system", component: system, name: "系统配置" },
         ],
       },
     ],

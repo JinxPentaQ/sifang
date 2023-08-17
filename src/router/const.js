@@ -27,6 +27,8 @@ import memberList from "@/views/member/memberList.vue";
 import memberWallet from "@/views/member/memberWallet.vue";
 import memberWalletRecords from "@/views/member/memberWalletRecords.vue";
 
+import collectMoneyList from "@/views/collectMoney/collectMoney.vue";
+
 //系统设置
 import roleList from "@/views/setting/roleList.vue";
 import userList from "@/views/setting/userList.vue";
@@ -58,6 +60,7 @@ export {
   memberList,
   memberWallet,
   memberWalletRecords,
+  collectMoneyList,
   roleList,
   userList,
   channel,

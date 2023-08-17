@@ -277,3 +277,17 @@ export const buyChannelRetTypeOptions = [
     value: buyChannelRetType.desk,
   },
 ]
+export const openStatusKey = {
+  open: 1,
+  close: 0, 
+}
+export const openStatusOptions = [
+  {
+    text: '开启',
+    value: openStatusKey.open,
+  },
+  {
+    text: '关闭',
+    value: openStatusKey.close,
+  },
+]
