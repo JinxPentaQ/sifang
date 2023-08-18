@@ -9,7 +9,7 @@
 <script>
 export default {
   name: "app",
-  components: {}
+  components: {},
 };
 </script>
 
@@ -303,14 +303,19 @@ body {
 .el-step__title.is-finish {
   color: #409eff !important;
 }
-.line{
+.line {
   text-align: center;
 }
-.el-select-dropdown__item{
-margin-bottom: 10px;
+.el-select-dropdown__item {
+  margin-bottom: 10px;
 }
 
 .page-container {
   padding: 0 20px;
+}
+.el-table .cell {
+  .el-button + .el-button {
+    margin-right: 10px !important;
+  }
 }
 </style>

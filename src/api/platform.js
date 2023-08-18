@@ -70,3 +70,10 @@ export function getsPlatformWalletRecord(data) {
     data
   })
 }
+export function modPlatformWallet(data) {
+  return request({
+    url: 'App/Platform_PlatformWalletController/ModPlatformWallet',
+    method: 'post',
+    data
+  })
+}

@@ -82,7 +82,11 @@
             </el-tooltip>
           </template>
         </el-table-column>
-        <el-table-column prop="channel_currency_name" label="通道名称" align="left">
+        <el-table-column
+          prop="channel_currency_name"
+          label="通道名称"
+          align="left"
+        >
         </el-table-column>
         <el-table-column
           prop="buy_fee"
@@ -257,12 +261,40 @@
           <span>备注</span>
           <span>{{ detail.remark }}</span>
         </div>
+        <div>
+          <el-button
+            type="primary"
+            size="mini"
+            @click="orderCallBack(detail.id)"
+            >订单回调</el-button
+          >
+          <el-button
+            v-show="detail.status === 7"
+            type="primary"
+            size="mini"
+            @click="orderReConfirm(detail.id)"
+            >补单</el-button
+          >
+          <el-button
+            v-show="detail.status > 7"
+            type="primary"
+            size="mini"
+            @click="orderBack(detail.id)"
+            >退单</el-button
+          >
+        </div>
       </el-dialog>
     </div>
   </div>
 </template>
 <script>
-import { getOrders, getOrder } from "@/api/order";
+import {
+  getOrders,
+  getOrder,
+  pushOrder,
+  reconfirmOrder,
+  backOrder,
+} from "@/api/order";
 import { orderStatusOptions, orderTypeOptions } from "@/utils/const";
 import { getOptionsText } from "@/utils/func";
 export default {
@@ -324,13 +356,43 @@ export default {
     //详情
     handleDetail(id) {
       this.infoVisible = true;
-      getOrder({ id })
+      getOrder({ id: `${id}` })
         .then((res) => {
           this.detail = res;
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    orderCallBack(id) {
+      pushOrder({ id }).then((res) => {
+        this.infoVisible = false;
+        this.$message({
+          message: "操作成功",
+          type: "success",
+        });
+        this.getList();
+      });
+    },
+    orderReConfirm(id) {
+      reconfirmOrder({ id }).then((res) => {
+        this.infoVisible = false;
+        this.$message({
+          message: "操作成功",
+          type: "success",
+        });
+        this.getList();
+      });
+    },
+    orderBack(id) {
+      backOrder({ id }).then((res) => {
+        this.infoVisible = false;
+        this.$message({
+          message: "操作成功",
+          type: "success",
+        });
+        this.getList();
+      });
     },
   },
   mounted() {

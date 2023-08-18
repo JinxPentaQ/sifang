@@ -87,3 +87,11 @@ export function getsBusinessWalletRecord(data) {
     data
   })
 }
+// 修改钱包余额
+export function modBusinessWallet(data) {
+  return request({
+    url: 'App/Business_BusinessWalletController/ModBusinessWallet',
+    method: 'post',
+    data
+  })
+}

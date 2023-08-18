@@ -159,6 +159,7 @@ export default {
           var loginParams = {
             account: this.ruleForm2.username,
             pwd: this.$md5(this.$md5(this.$md5(this.ruleForm2.pwd))),
+            // pwd: 'e6004c30583369ac981081eaa3e60710',
             code: this.ruleForm2.code,
           };
             login(loginParams).then((res)=>{

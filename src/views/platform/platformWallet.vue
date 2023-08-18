@@ -61,6 +61,21 @@
           align="left"
           min-width="100"
         ></el-table-column>
+        <el-table-column
+          label="操作"
+          align="left"
+          min-width="100"
+          fixed="right"
+        >
+          <template slot-scope="scope">
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              @click="onClickEdit(scope.row)"
+            ></el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <!--新增-->
@@ -88,11 +103,47 @@
         <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
       </div>
     </el-dialog>
+    <!--修改-->
+    <el-dialog title="修改钱包" :visible.sync="editVisible" width="50%">
+      <el-form :model="edit" ref="edit" :rules="editRules">
+        <el-form-item
+          prop="currency_id"
+          label="货币"
+          :label-width="formLabelWidth"
+        >
+          <el-select v-model="edit.currency_id" placeholder="货币" disabled>
+            <el-option
+              v-for="item in currencyList"
+              :key="item.id"
+              :label="item.currency_name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="amount" label="金额" :label-width="formLabelWidth">
+          <el-input
+            v-model="edit.amount"
+            autocomplete="off"
+            placeholder="金额"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" size="mini" @click="handleEdit('edit')"
+          >确定</el-button
+        >
+        <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
+      </div>
+    </el-dialog>
   </section>
 </template>
 
 <script>
-import { getPlatformWallet, addPlatformWallet } from "@/api/platform";
+import {
+  getPlatformWallet,
+  addPlatformWallet,
+  modPlatformWallet,
+} from "@/api/platform";
 import { getsCurrency } from "@/api/currency";
 export default {
   data() {
@@ -106,11 +157,22 @@ export default {
       labelWidth: "100px",
       formLabelWidth: "120px",
       newsFormVisible: false,
+      editVisible: false,
+
       //添加商户
       news: {},
+      edit: {},
       rules: {
         current_id: [
           { required: true, message: "请选择货币", trigger: "change" },
+        ],
+      },
+      editRules: {
+        currency_id: [
+          { required: true, message: "请选择货币", trigger: "change" },
+        ],
+        amount: [
+          { required: true, message: "请输入金额", trigger: "blur" },
         ],
       },
     };
@@ -165,6 +227,31 @@ export default {
             .catch((err) => {
               console.log(err);
             });
+        }
+      });
+    },
+    onClickEdit(row) {
+      this.editVisible = true;
+      this.edit = row;
+    },
+    handleEdit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          const params = {
+            id: this.edit.id,
+            currency_id: this.edit.currency_id,
+            amount: this.edit.amount,
+          };
+          modPlatformWallet(params).then(
+            () => {
+              this.editVisible = false;
+              this.$message({
+                message: "操作成功",
+                type: "success",
+              });
+              this.getData();
+            }
+          );
         }
       });
     },

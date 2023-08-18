@@ -69,3 +69,11 @@ export function getsUserWalletRecord(data) {
     data
   })
 }
+// 修改用户钱包
+export function modUserWallet(data) {
+  return request({
+    url: '	App/User_UserWalletController/ModUserWallet',
+    method: 'post',
+    data
+  })
+}
