@@ -5,7 +5,7 @@ import {  Message } from 'element-ui'
 console.log()
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://test.service.tmaa.cc/', // url = base url + request url
+  baseURL: 'http://service.tmaa.cc/', // url = base url + request url
   // withCredentials: true,  // send cookies when cross-domain requests
   timeout: 20000 // request timeout
 })
