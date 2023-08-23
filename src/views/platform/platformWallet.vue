@@ -70,10 +70,9 @@
           <template slot-scope="scope">
             <el-button
               type="primary"
-              icon="el-icon-edit"
               size="mini"
               @click="onClickEdit(scope.row)"
-            ></el-button>
+            >修改</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -132,7 +131,7 @@
         <el-button type="primary" size="mini" @click="handleEdit('edit')"
           >确定</el-button
         >
-        <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
+        <el-button size="mini" @click="editVisible = false">取消</el-button>
       </div>
     </el-dialog>
   </section>
