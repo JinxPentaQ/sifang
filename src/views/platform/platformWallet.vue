@@ -70,10 +70,10 @@
           <template slot-scope="scope">
             <el-button
               type="primary"
-              icon="el-icon-edit"
               size="mini"
               @click="onClickEdit(scope.row)"
-            ></el-button>
+              >修改</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -127,12 +127,19 @@
             placeholder="金额"
           ></el-input>
         </el-form-item>
+        <el-form-item prop="remark" label="原因" :label-width="formLabelWidth">
+          <el-input
+            v-model="edit.remark"
+            autocomplete="off"
+            placeholder="原因"
+          ></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" size="mini" @click="handleEdit('edit')"
           >确定</el-button
         >
-        <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
+        <el-button size="mini" @click="editVisible = false">取消</el-button>
       </div>
     </el-dialog>
   </section>
@@ -171,9 +178,8 @@ export default {
         currency_id: [
           { required: true, message: "请选择货币", trigger: "change" },
         ],
-        amount: [
-          { required: true, message: "请输入金额", trigger: "blur" },
-        ],
+        amount: [{ required: true, message: "请输入金额", trigger: "blur" }],
+        remark: [{ required: true, message: "请输入原因", trigger: "blur" }],
       },
     };
   },
@@ -241,17 +247,16 @@ export default {
             id: this.edit.id,
             currency_id: this.edit.currency_id,
             amount: this.edit.amount,
+            remark: this.edit.remark,
           };
-          modPlatformWallet(params).then(
-            () => {
-              this.editVisible = false;
-              this.$message({
-                message: "操作成功",
-                type: "success",
-              });
-              this.getData();
-            }
-          );
+          modPlatformWallet(params).then(() => {
+            this.editVisible = false;
+            this.$message({
+              message: "操作成功",
+              type: "success",
+            });
+            this.getData();
+          });
         }
       });
     },

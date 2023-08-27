@@ -244,7 +244,7 @@ export default {
         .catch(() => {});
     },
   },
-  created() {
+  mounted() {
     this.getData();
     getsCurrency().then((res) => {
       this.currencyList = res;

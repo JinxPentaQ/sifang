@@ -33,7 +33,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="支付方式" prop="type" :label-width="labelWidth">
+        <!-- <el-form-item label="支付方式" prop="type" :label-width="labelWidth">
           <el-select v-model="filters.type" placeholder="支付方式" clearable>
             <el-option
               v-for="(item, index) in orderTypeOptions"
@@ -42,7 +42,7 @@
               :key="index"
             ></el-option>
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
         <!-- <el-form-item label="交易时间" prop="date" :label-width="labelWidth">
           <el-date-picker
             v-model="filters.date"
@@ -83,6 +83,21 @@
           </template>
         </el-table-column>
         <el-table-column
+          prop="type"
+          label="订单类型"
+          align="left"
+          min-width="120"
+        >
+          <template slot-scope="scope">
+            {{ getOptionsText(orderTypeOptions, scope.row.type) }}
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="channel_code"
+          label="通道代码"
+          align="left"
+        ></el-table-column>
+        <el-table-column
           prop="channel_currency_name"
           label="通道名称"
           align="left"
@@ -93,31 +108,27 @@
           label="买方手续费"
           align="left"
         ></el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           prop="buy_fee_rate"
           label="买方手续费率"
           align="left"
-        ></el-table-column>
+        ></el-table-column> -->
         <el-table-column
           prop="buy_amount"
           label="买入金额"
           align="left"
         ></el-table-column>
         <el-table-column
-          prop="buy_currency_id"
+          prop="buy_currency_code"
           label="买入货币类型"
           align="left"
         ></el-table-column>
-        <el-table-column
-          prop="channel_code"
-          label="通道代码"
-          align="left"
-        ></el-table-column>
-        <el-table-column
+
+        <!-- <el-table-column
           prop="exchange_rates"
           label="交易费率"
           align="left"
-        ></el-table-column>
+        ></el-table-column> -->
         <el-table-column
           prop="status"
           label="订单状态"
@@ -129,46 +140,12 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="type"
-          label="支付方式"
-          align="left"
-          min-width="120"
-        >
-          <template slot-scope="scope">
-            {{ getOptionsText(orderTypeOptions, scope.row.type) }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="seller_user_name"
-          label="卖方"
-          align="left"
-        ></el-table-column>
-        <el-table-column
-          prop="sell_fee"
-          label="卖方手续费"
-          align="left"
-        ></el-table-column>
-        <el-table-column
-          prop="sell_fee_rate"
-          label="卖方手续费率"
-          align="left"
-        ></el-table-column>
-        <el-table-column
-          prop="sell_amount"
-          label="卖出金额"
-          align="left"
-        ></el-table-column>
-        <el-table-column
-          prop="sell_currency_code"
-          label="卖出货币类型"
-          align="left"
-        ></el-table-column>
-        <el-table-column
           prop="remark"
           label="备注"
           align="left"
         ></el-table-column>
         <el-table-column
+          min-width="100"
           prop="update_time"
           label="更新时间"
           align="left"
@@ -234,28 +211,16 @@
           <span>{{ detail.buy_currency_id }}</span>
         </div>
         <div class="info-item">
-          <span>交易手续费</span>
-          <span>{{ detail.exchange_rates }}</span>
+          <span>买入通知时间</span>
+          <span>{{ detail.buy_notify_time }}</span>
         </div>
         <div class="info-item">
-          <span>卖方</span>
-          <span>{{ detail.seller_user_name }}</span>
+          <span>买入通知内容</span>
+          <span>{{ detail.buy_notify_content }}</span>
         </div>
         <div class="info-item">
-          <span>卖出金额</span>
-          <span>{{ detail.sell_amount }}</span>
-        </div>
-        <div class="info-item">
-          <span>卖出手续费</span>
-          <span>{{ detail.sell_fee }}</span>
-        </div>
-        <div class="info-item">
-          <span>卖出手续费率</span>
-          <span>{{ detail.sell_fee_rate }}</span>
-        </div>
-        <div class="info-item">
-          <span>卖出币种</span>
-          <span>{{ detail.sell_currency_id }}</span>
+          <span>买入回调状态</span>
+          <span> {{ getOptionsText(orderNotifyStatus, detail.buy_notify_status) }}</span>
         </div>
         <div class="info-item">
           <span>备注</span>
@@ -295,14 +260,14 @@ import {
   reconfirmOrder,
   backOrder,
 } from "@/api/order";
-import { orderStatusOptions, orderTypeOptions } from "@/utils/const";
+import { orderStatusOptions, orderTypeOptions, orderNotifyStatus } from "@/utils/const";
 import { getOptionsText } from "@/utils/func";
 export default {
   data() {
     return {
       //筛选
       filters: {
-        type: "",
+        type: "2",
         status: "",
         order_no: "",
       },
@@ -317,6 +282,7 @@ export default {
       detail: {},
       orderStatusOptions,
       orderTypeOptions,
+      orderNotifyStatus,
     };
   },
   methods: {

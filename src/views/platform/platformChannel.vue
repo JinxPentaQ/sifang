@@ -20,6 +20,12 @@
         v-loading="listLoading"
       >
         <el-table-column
+          prop="channel_currency_name"
+          label="通道货币名称"
+          align="left"
+          min-width="100"
+        />
+        <el-table-column
           prop="currency_name"
           label="币种名称"
           align="left"
@@ -180,6 +186,13 @@
       width="50%"
     >
       <el-form :model="edit" ref="edit" :rules="rules">
+        <el-form-item
+          prop="channel_currency_name"
+          label="通道货币名称"
+          :label-width="formLabelWidth"
+        >
+          <el-input v-model="edit.channel_currency_name" placeholder="通道货币名称" disabled></el-input>
+        </el-form-item>
         <el-form-item
           prop="buy_rate"
           label="购买费率"
@@ -451,7 +464,7 @@ export default {
       this.listLoading = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          modBusinessChannelConfig({ ...this.edit, id: this.$route.params.id })
+          modBusinessChannelConfig({ ...this.edit, id: this.edit.id})
             .then(() => {
               this.$message({
                 message: "操作成功",

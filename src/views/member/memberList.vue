@@ -185,7 +185,7 @@
         >
           <template slot-scope="scope">
             <el-tag :type="getOptionsTag(authIdentityOptions, scope.row.auth_identity)">
-              <i :class="getOptionsItem(authIdentityOptions,  scope.row.auth_identity).icon"></i>
+              <!-- <i :class="getOptionsItem(authIdentityOptions,  scope.row.auth_identity).icon"></i> -->
               {{ getOptionsText(authIdentityOptions, scope.row.auth_identity) }}
             </el-tag>
           </template>

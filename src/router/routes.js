@@ -6,6 +6,7 @@ import {
   changePwd,
   welcome,
   c2cOrder,
+  c2cOrderCollect,
   exchangeOrder,
   merchantList,
   merchantWallet,
@@ -54,7 +55,12 @@ let routes = [
           {
             path: "/c2cOrder",
             component: c2cOrder,
-            name: "C2C订单",
+            name: "C2C订单-代付",
+          },
+          {
+            path: "/c2cOrder-collect",
+            component: c2cOrderCollect,
+            name: "C2C订单-代收",
           },
           {
             path: "/exchangeOrder",
