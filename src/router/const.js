@@ -8,19 +8,20 @@ import welcome from "@/views/welcome.vue";
 
 //订单
 import c2cOrder from "@/views/order/c2cOrder.vue";
+import c2cOrderCollect from "@/views/order/c2cOrder-collect.vue";
 import exchangeOrder from "@/views/order/exchangeOrder.vue";
 
 //商户
 import merchantList from "@/views/merchant/merchantList.vue";
 import merchantWallet from "@/views/merchant/merchantWallet.vue";
 import merchantWalletRecords from "@/views/merchant/merchantWalletRecords.vue";
-import merchantChannel from '@/views/merchant/merchantChannel.vue';
+import merchantChannel from "@/views/merchant/merchantChannel.vue";
 
 //平台
 import platformList from "@/views/platform/platformList.vue";
 import platformWallet from "@/views/platform/platformWallet.vue";
 import platformWalletRecords from "@/views/platform/platformWalletRecords.vue";
-import platformChannel from '@/views/platform/platformChannel.vue';
+import platformChannel from "@/views/platform/platformChannel.vue";
 
 //会员管理
 import memberList from "@/views/member/memberList.vue";
@@ -39,7 +40,6 @@ import permissionList from "@/views/setting/permissionList.vue";
 import testOrder from "@/views/setting/testOrder.vue";
 import system from "@/views/setting/systemSet.vue";
 
-
 export {
   Login,
   multiLevelMenu,
@@ -48,6 +48,7 @@ export {
   changePwd,
   welcome,
   c2cOrder,
+  c2cOrderCollect,
   exchangeOrder,
   merchantList,
   merchantWallet,

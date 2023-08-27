@@ -31,7 +31,7 @@ VueClipboard.config.autoSetContainer = true
 
 Vue.prototype.$http = axios;
 Vue.prototype.GLOBAL = global_;
-axios.defaults.baseURL = "http://service.tmaa.cc/";
+axios.defaults.baseURL = "https://service.tmaa.cc/";
 
 const router = new VueRouter({
   // mode: 'history',

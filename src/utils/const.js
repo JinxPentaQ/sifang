@@ -291,3 +291,18 @@ export const openStatusOptions = [
     value: openStatusKey.close,
   },
 ]
+
+export  const orderNotifyStatus = [
+  {
+    text: '进行中',
+    value: 1,
+  },
+  {
+    text: '成功',
+    value: 2,
+  },
+  {
+    text: '失败',
+    value: 3,
+  },
+]
