@@ -8,7 +8,7 @@
         highlight-current-row
         v-loading="listLoading"
       >
-        <el-table-column prop="order_id" label="订单号"></el-table-column>
+        <el-table-column prop="order_no" label="订单号"></el-table-column>
         <el-table-column prop="remark" label="收款入账"></el-table-column>
         <el-table-column prop="currency_name" label="货币名称"></el-table-column>
         <el-table-column prop="before_amount" label="变动前余额"></el-table-column>
