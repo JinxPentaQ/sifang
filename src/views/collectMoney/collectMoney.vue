@@ -95,29 +95,72 @@
         highlight-current-row
         v-loading="listLoading"
       >
-        <el-table-column prop="user_name" label="用户名称" align="left"  width="120px"/>
-        <el-table-column prop="user_account" label="用户账号" align="left"  width="120px"/>
+        <el-table-column
+          prop="user_name"
+          label="用户名称"
+          align="left"
+          width="120px"
+        />
+        <el-table-column
+          prop="user_account"
+          label="用户账号"
+          align="left"
+          width="120px"
+        />
         <el-table-column prop="status" label="状态" align="left">
           <template slot-scope="scope">
             {{ getOptionsText(confirmExchangOrderStatus, scope.row.status) }}
           </template>
         </el-table-column>
-        <el-table-column prop="is_open" label="启用状态" align="left" width="100px">
+        <el-table-column
+          prop="is_open"
+          label="启用状态"
+          align="left"
+          width="100px"
+        >
           <template slot-scope="scope">
             {{ getOptionsText(openStatusOptions, scope.row.is_open) }}
           </template>
         </el-table-column>
-        <el-table-column prop="min_amount" label="收款下限" align="left" />
-        <el-table-column prop="max_amount" label="收款上限" align="left" />
+        <el-table-column prop="min_amount" label="收款下限" align="left">
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.min_amount) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="max_amount" label="收款上限" align="left" >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.max_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="channel_currency_name"
           label="通道币种名称"
           align="left"
         />
-        <el-table-column prop="channel_name" label="通道名称" align="left"  width="180px"/>
-        <el-table-column prop="currency_name" label="币种名称" align="left"  width="180px"/>
-        <el-table-column prop="name" label="收款姓名" align="left"  width="180px"/>
-        <el-table-column prop="account" label="收款账号" align="left"  width="180px"/>
+        <el-table-column
+          prop="channel_name"
+          label="通道名称"
+          align="left"
+          width="180px"
+        />
+        <el-table-column
+          prop="currency_name"
+          label="币种名称"
+          align="left"
+          width="180px"
+        />
+        <el-table-column
+          prop="name"
+          label="收款姓名"
+          align="left"
+          width="180px"
+        />
+        <el-table-column
+          prop="account"
+          label="收款账号"
+          align="left"
+          width="180px"
+        />
         <el-table-column prop="organization" label="收款组织" align="left" />
         <el-table-column prop="address" label="组织地址" align="left" />
         <el-table-column prop="chain" label="链名称" align="left" />
@@ -190,7 +233,7 @@ import {
   confirmExchangOrderStatus,
   openStatusOptions,
 } from "@/utils/const";
-import { getOptionsText } from "@/utils/func";
+import { getOptionsText, filterNumber } from "@/utils/func";
 import { getsCurrency } from "@/api/currency";
 import { getsChannelCurrency } from "@/api/currencyChannel";
 import { getsChannel } from "@/api/channel";
@@ -222,6 +265,7 @@ export default {
   },
   methods: {
     getOptionsText,
+    filterNumber,
     //分页
     handleCurrentChange(val) {
       this.page = val;
