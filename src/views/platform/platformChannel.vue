@@ -48,7 +48,11 @@
           label="购买费率"
           align="left"
           min-width="100"
-        />
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_rate) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="buy_is_open"
           label="购买通道是否开启"
@@ -64,13 +68,22 @@
           label="购买最大费率"
           align="left"
           min-width="100"
-        />
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_max_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="buy_min_amount"
           label="购买最小费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_min_amount) }}
+          </template>
+        </el-table-column>
+
         <el-table-column
           prop="buy_channel_ret_type"
           label="购买平台通道返回类型"
@@ -78,18 +91,17 @@
           min-width="100"
         >
           <template slot-scope="scope">
-            {{ getOptionsText(buyChannelRetTypeOptions , scope.row.buy_channel_ret_type) }}
+            {{
+              getOptionsText(
+                buyChannelRetTypeOptions,
+                scope.row.buy_channel_ret_type
+              )
+            }}
           </template>
         </el-table-column>
         <el-table-column
           prop="buy_channel_code"
           label="购买平台通道描述"
-          align="left"
-          min-width="100"
-        ></el-table-column>
-        <el-table-column
-          prop="sell_rate"
-          label="	卖出费率"
           align="left"
           min-width="100"
         ></el-table-column>
@@ -104,17 +116,35 @@
           </template>
         </el-table-column>
         <el-table-column
+          prop="sell_rate"
+          label="	卖出费率"
+          align="left"
+          min-width="100"
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_rate) }}
+          </template>
+        </el-table-column>
+        <el-table-column
           prop="sell_max_amount"
           label="卖出最大费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_max_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="sell_min_amount"
           label="卖出最小费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_min_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="sell_channel_ret_type"
           label="卖出平台通道返回类型"
@@ -122,7 +152,12 @@
           min-width="100"
         >
           <template slot-scope="scope">
-            {{ getOptionsText(buyChannelRetTypeOptions , scope.row.sell_channel_ret_type) }}
+            {{
+              getOptionsText(
+                buyChannelRetTypeOptions,
+                scope.row.sell_channel_ret_type
+              )
+            }}
           </template>
         </el-table-column>
         <el-table-column
@@ -191,7 +226,11 @@
           label="通道货币名称"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="edit.channel_currency_name" placeholder="通道货币名称" disabled></el-input>
+          <el-input
+            v-model="edit.channel_currency_name"
+            placeholder="通道货币名称"
+            disabled
+          ></el-input>
         </el-form-item>
         <el-form-item
           prop="buy_rate"
@@ -205,7 +244,10 @@
           label="平台币种关联"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="edit.platform_currency_code" placeholder="平台币种关联"></el-input>
+          <el-input
+            v-model="edit.platform_currency_code"
+            placeholder="平台币种关联"
+          ></el-input>
         </el-form-item>
         <el-form-item
           prop="buy_is_open"
@@ -246,7 +288,10 @@
           label="购买平台通道返回类型"
           :label-width="formLabelWidth"
         >
-          <el-select v-model="edit.buy_channel_ret_type" placeholder="购买平台通道返回类型">
+          <el-select
+            v-model="edit.buy_channel_ret_type"
+            placeholder="购买平台通道返回类型"
+          >
             <el-option
               v-for="item in buyChannelRetTypeOptions"
               :key="item.value"
@@ -311,7 +356,10 @@
           label="	卖出平台通道返回类型 "
           :label-width="formLabelWidth"
         >
-          <el-select v-model="edit.sell_channel_ret_type" placeholder="卖出平台通道返回类型 ">
+          <el-select
+            v-model="edit.sell_channel_ret_type"
+            placeholder="卖出平台通道返回类型 "
+          >
             <el-option
               v-for="item in buyChannelRetTypeOptions"
               :key="item.value"
@@ -347,9 +395,7 @@ import {
   addBusinessChannelConfig,
   modBusinessChannelConfig,
 } from "@/api/platformChannel";
-import {
-  getsChannelCurrency,
-} from "@/api/currencyChannel";
+import { getsChannelCurrency } from "@/api/currencyChannel";
 import {
   channelOpen,
   bySellType,
@@ -357,7 +403,7 @@ import {
   bySellTypeOptions,
   buyChannelRetTypeOptions,
 } from "@/utils/const";
-import { getOptionsText } from "@/utils/func";
+import { getOptionsText, filterNumber } from "@/utils/func";
 export default {
   data() {
     return {
@@ -394,6 +440,7 @@ export default {
   },
   methods: {
     getOptionsText,
+    filterNumber,
     //分页
     handleCurrentChange(val) {
       this.page = val;
@@ -464,7 +511,7 @@ export default {
       this.listLoading = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          modBusinessChannelConfig({ ...this.edit, id: this.edit.id})
+          modBusinessChannelConfig({ ...this.edit, id: this.edit.id })
             .then(() => {
               this.$message({
                 message: "操作成功",

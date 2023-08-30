@@ -36,7 +36,11 @@
           label="余额"
           align="left"
           min-width="100"
-        />
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.balance_fee) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="business_no"
           label="商户编号"
@@ -148,6 +152,7 @@
 <script>
 import { getUserWallet, addUserWallet, modUserWallet } from "@/api/member";
 import { getsCurrency } from "@/api/currency";
+import { filterNumber }  from "@/utils/func";
 export default {
   data() {
     return {
@@ -179,6 +184,7 @@ export default {
     };
   },
   methods: {
+    filterNumber,
     // 重置
     resetForm() {
       this.$refs.filters.resetFields();

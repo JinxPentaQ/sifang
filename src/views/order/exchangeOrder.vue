@@ -90,11 +90,11 @@
             {{ getOptionsText(confirmExchangOrderStatus, scope.row.status) }}
           </template>
         </el-table-column>
-        <el-table-column
-          prop="rate"
-          label="费率"
-          align="left"
-        ></el-table-column>
+        <el-table-column prop="rate" label="费率" align="left">
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.rate) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="from_currency_name"
           label="初始货币类型"
@@ -126,13 +126,19 @@
               type="primary"
               size="mini"
               @click="handleVerify(scope.row.id, conExchangeStatusType.success)"
-              :disabled="scope.row.status === conExchangeStatusType.success || scope.row.status === conExchangeStatusType.final"
+              :disabled="
+                scope.row.status === conExchangeStatusType.success ||
+                scope.row.status === conExchangeStatusType.final
+              "
               >通过</el-button
             >
             <el-button
               type="danger"
               size="mini"
-              :disabled="scope.row.status === conExchangeStatusType.success || scope.row.status === conExchangeStatusType.final"
+              :disabled="
+                scope.row.status === conExchangeStatusType.success ||
+                scope.row.status === conExchangeStatusType.final
+              "
               @click="handleVerify(scope.row.id, conExchangeStatusType.final)"
               >拒绝</el-button
             >
@@ -159,7 +165,7 @@ import {
   conExchangeStatusType,
   confirmExchangOrderStatus,
 } from "@/utils/const";
-import { getOptionsText } from "@/utils/func";
+import { getOptionsText, filterNumber } from "@/utils/func";
 export default {
   data() {
     return {
@@ -182,6 +188,7 @@ export default {
   },
   methods: {
     getOptionsText,
+    filterNumber,
     //分页
     handleCurrentChange(val) {
       this.page = val;

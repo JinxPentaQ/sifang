@@ -42,7 +42,11 @@
           label="购买费率"
           align="left"
           min-width="100"
-        />
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_rate) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="buy_is_open"
           label="购买通道是否开启"
@@ -74,19 +78,31 @@
           label="购买最大费率"
           align="left"
           min-width="100"
-        />
+          >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_max_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="buy_min_amount"
           label="购买最小费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.buy_min_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="sell_rate"
           label="	卖出费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_rate) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="sell_is_open"
           label="	卖出通道是否开启"
@@ -118,13 +134,21 @@
           label="卖出最大费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_max_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column
           prop="sell_min_amount"
           label="卖出最小费率"
           align="left"
           min-width="100"
-        ></el-table-column>
+        >
+          <template slot-scope="scope">
+            {{ filterNumber(scope.row.sell_min_amount) }}
+          </template>
+        </el-table-column>
         <el-table-column label="操作" align="left">
           <template slot-scope="scope">
             <el-button type="text" @click="handleEdit(scope.row)" size="mini"
@@ -185,7 +209,11 @@
           label="通道货币名称"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="edit.channel_currency_name" placeholder="通道货币名称" disabled></el-input>
+          <el-input
+            v-model="edit.channel_currency_name"
+            placeholder="通道货币名称"
+            disabled
+          ></el-input>
         </el-form-item>
         <el-form-item
           prop="buy_rate"
@@ -337,16 +365,14 @@ import {
   addBusinessChannelConfig,
   modBusinessChannelConfig,
 } from "@/api/merchantChannel";
-import {
-  getsChannelCurrency,
-} from "@/api/currencyChannel";
+import { getsChannelCurrency } from "@/api/currencyChannel";
 import {
   channelOpen,
   bySellType,
   channelOpenOptions,
   bySellTypeOptions,
 } from "@/utils/const";
-import { getOptionsText } from "@/utils/func";
+import { getOptionsText, filterNumber } from "@/utils/func";
 export default {
   data() {
     return {
@@ -382,6 +408,7 @@ export default {
   },
   methods: {
     getOptionsText,
+    filterNumber,
     //分页
     handleCurrentChange(val) {
       this.page = val;
