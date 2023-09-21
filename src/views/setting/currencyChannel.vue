@@ -255,11 +255,17 @@ export default {
   },
   mounted() {
     this.getData();
-    getsCurrency().then((res) => {
-      this.currencyList = res;
+    getsCurrency({
+      page: 1,
+      limit: 100,
+    }).then((res) => {
+      this.currencyList = res.items;
     })
-    getsChannel().then((res) => {
-      this.channelList = res;
+    getsChannel({
+      page: 1,
+      limit: 100,
+    }).then((res) => {
+      this.channelList = res.items;
     });
   },
 };

@@ -198,6 +198,8 @@ export default {
     getData() {
       getBusinessWallet({
         id: this.$route.params.id,
+        page: this.page,
+        limit: this.pageSize,
       })
         .then((res) => {
           this.listLoading = false;
@@ -210,9 +212,12 @@ export default {
     },
     // 获取货币列表
     getCurreny() {
-      getsCurrency()
+      getsCurrency({
+        page: 1,
+        limit: 100,
+      })
         .then((res) => {
-          this.currencyList = res;
+          this.currencyList = res.items;
         })
         .catch((err) => {
           console.log(err);

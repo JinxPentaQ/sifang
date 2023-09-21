@@ -484,9 +484,12 @@ export default {
     },
     // 获取货币列表
     getCurreny() {
-      getsChannelCurrency()
+      getsChannelCurrency({
+        page: 1,
+        limit: 100,
+      })
         .then((res) => {
-          this.currencyList = res;
+          this.currencyList = res.items;
         })
         .catch((err) => {
           console.log(err);
