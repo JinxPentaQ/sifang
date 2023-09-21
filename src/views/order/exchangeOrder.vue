@@ -210,7 +210,7 @@ export default {
       this.listLoading = true;
       getsExchangeOrder({
         ...this.filters,
-        offset: this.page,
+        page: this.page,
         limit: this.pageSize,
       })
         .then((res) => {

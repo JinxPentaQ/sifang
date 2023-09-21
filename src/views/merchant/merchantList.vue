@@ -104,12 +104,7 @@
           align="left"
           min-width="100"
         />
-        <el-table-column
-          prop="private_key"
-          label="密钥"
-          align="left"
-          min-width="100"
-        ></el-table-column>
+
         <el-table-column prop="status" label="状态">
           <template slot-scope="scope">
             <el-switch
@@ -223,8 +218,12 @@
         <span>{{ detail.account }}</span>
       </div>
       <div class="info-item">
-        <span>密钥</span>
-        <span>{{ detail.private_key }}</span>
+        <span>API密钥</span>
+        <span>{{ detail.api_private_key }}</span>
+      </div>
+      <div class="info-item">
+        <span>API白名单</span>
+        <span>{{ detail.api_white_list }}</span>
       </div>
       <div class="info-item">
         <span>备注</span>
@@ -324,7 +323,7 @@ export default {
     getData() {
       getsBusiness({
         ...this.filters,
-        offset: this.page,
+        page: this.page,
         limit: this.pageSize,
       })
         .then((res) => {

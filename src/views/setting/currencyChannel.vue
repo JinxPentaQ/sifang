@@ -4,22 +4,23 @@
       <div class="toolNav">
         <div class="toolNavList">
           <el-button
-            type="primary"
-            icon="el-icon-circle-plus-outline"
-            size="mini"
-            @click="newsFormVisible = true"
-            >新增</el-button
+              type="primary"
+              icon="el-icon-circle-plus-outline"
+              size="mini"
+              @click="newsFormVisible = true"
+          >新增
+          </el-button
           >
         </div>
       </div>
       <!--列表-->
       <el-table
-        border
-        :data="tableData"
-        highlight-current-row
-        v-loading="listLoading"
+          border
+          :data="tableData"
+          highlight-current-row
+          v-loading="listLoading"
       >
-        <el-table-column prop="id" label="ID"></el-table-column>
+        <el-table-column prop="channel_currency_name" label="通道币种"></el-table-column>
         <el-table-column prop="currency_name" label="币种名称"></el-table-column>
         <el-table-column prop="currency_code" label="币种Code"></el-table-column>
         <el-table-column prop="channel_name" label="通道名称"></el-table-column>
@@ -28,44 +29,45 @@
         <el-table-column label="操作" align="left">
           <template slot-scope="scope">
             <el-button
-              type="text"
-              @click="deleteHandle(scope.row.id)"
-              size="mini"
-              >删除</el-button
+                type="text"
+                @click="deleteHandle(scope.row.id)"
+                size="mini"
+            >删除
+            </el-button
             >
           </template>
         </el-table-column>
       </el-table>
       <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :page-sizes="[10, 15, 20, 25]"
-        :page-size="10"
-        layout="total, prev, pager, next, sizes, jumper"
-        :total="total"
-        style="float: right; margin: 15px"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :page-sizes="[10, 15, 20, 25]"
+          :page-size="10"
+          layout="total, prev, pager, next, sizes, jumper"
+          :total="total"
+          style="float: right; margin: 15px"
       ></el-pagination>
     </div>
     <!--新增界面-->
     <el-dialog
-      title="新增币种"
-      :visible.sync="newsFormVisible"
-      style="width: 60%; margin: 0 auto"
+        title="新增币种"
+        :visible.sync="newsFormVisible"
+        style="width: 60%; margin: 0 auto"
     >
       <el-form :model="news" :rules="rules" ref="news">
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="channel_id"
-              label="通道"
-              :label-width="formLabelWidth"
+                prop="channel_id"
+                label="通道"
+                :label-width="formLabelWidth"
             >
               <el-select v-model="news.channel_id" placeholder="通道">
                 <el-option
-                  v-for="item in channelList"
-                  :key="item.id"
-                  :label="item.channel_name"
-                  :value="item.id"
+                    v-for="item in channelList"
+                    :key="item.id"
+                    :label="item.channel_name"
+                    :value="item.id"
                 ></el-option>
               </el-select>
             </el-form-item>
@@ -74,16 +76,16 @@
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="currency_id"
-              label="币种"
-              :label-width="formLabelWidth"
+                prop="currency_id"
+                label="币种"
+                :label-width="formLabelWidth"
             >
               <el-select v-model="news.currency_id" placeholder="币种">
                 <el-option
-                  v-for="item in currencyList"
-                  :key="item.id"
-                  :label="item.currency_name"
-                  :value="item.id"
+                    v-for="item in currencyList"
+                    :key="item.id"
+                    :label="item.currency_name"
+                    :value="item.id"
                 ></el-option>
               </el-select>
             </el-form-item>
@@ -92,14 +94,14 @@
         <el-row>
           <el-col :span="22">
             <el-form-item
-              prop="desc"
-              label="币种描述"
-              :label-width="formLabelWidth"
+                prop="desc"
+                label="币种描述"
+                :label-width="formLabelWidth"
             >
               <el-input
-                v-model="news.desc"
-                autocomplete="off"
-                placeholder="币种描述"
+                  v-model="news.desc"
+                  autocomplete="off"
+                  placeholder="币种描述"
               ></el-input>
             </el-form-item>
           </el-col>
@@ -107,7 +109,8 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button size="mini" type="primary" @click="addSubmit('news')"
-          >确定</el-button
+        >确定
+        </el-button
         >
         <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
       </div>
@@ -127,6 +130,7 @@ import {
 import {
   getsChannel,
 } from "@/api/channel";
+
 export default {
   data() {
     return {
@@ -148,9 +152,9 @@ export default {
       LabelWidth: "140px",
       newsFormVisible: false,
       rules: {
-        name: [{ required: true, message: "请输入通道名称", trigger: "blur" }],
-        channel_id: [{ required: true, message: "请选择渠道", trigger: "change" }],
-        currency_id: [{ required: true, message: "请输入币种ID", trigger: "blur" }],
+        name: [{required: true, message: "请输入通道名称", trigger: "blur"}],
+        channel_id: [{required: true, message: "请选择渠道", trigger: "change"}],
+        currency_id: [{required: true, message: "请输入币种ID", trigger: "blur"}],
       },
       statusOptions: [
         {
@@ -192,32 +196,36 @@ export default {
     // 获取用户列表
     getData() {
       this.listLoading = true;
-      getsChannelCurrency()
-        .then((res) => {
-          this.listLoading = false;
-          this.tableData = res;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getsChannelCurrency({
+        page: this.page,
+        limit: this.pageSize,
+      })
+          .then((res) => {
+            this.listLoading = false;
+            this.tableData = res.items;
+            this.total = res.total;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     },
     //新增
     addSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           addChannelCurrency(this.news)
-            .then(() => {
-              this.$message({
-                message: "操作成功",
-                type: "success",
+              .then(() => {
+                this.$message({
+                  message: "操作成功",
+                  type: "success",
+                });
+                this.$refs[formName].resetFields();
+                this.newsFormVisible = false;
+                this.getData();
+              })
+              .catch((err) => {
+                console.log(err);
               });
-              this.$refs[formName].resetFields();
-              this.newsFormVisible = false;
-              this.getData();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
         }
       });
     },
@@ -226,31 +234,38 @@ export default {
       this.$confirm("确认删除该通道吗?", "提示", {
         type: "warning",
       })
-        .then(() => {
-          this.listLoading = true;
-          delChannelCurrency({ id })
-            .then((res) => {
-              this.$message({
-                message: "操作成功",
-                type: "success",
-              });
-              this.listLoading = false;
-              this.getData();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch(() => {});
+          .then(() => {
+            this.listLoading = true;
+            delChannelCurrency({id})
+                .then((res) => {
+                  this.$message({
+                    message: "操作成功",
+                    type: "success",
+                  });
+                  this.listLoading = false;
+                  this.getData();
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+          })
+          .catch(() => {
+          });
     },
   },
   mounted() {
     this.getData();
-    getsCurrency().then((res) => {
-      this.currencyList = res;
+    getsCurrency({
+      page: 1,
+      limit: 100,
+    }).then((res) => {
+      this.currencyList = res.items;
     })
-    getsChannel().then((res) => {
-      this.channelList = res;
+    getsChannel({
+      page: 1,
+      limit: 100,
+    }).then((res) => {
+      this.channelList = res.items;
     });
   },
 };
