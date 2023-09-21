@@ -4,19 +4,20 @@
       <div class="toolNav">
         <div class="toolNavList">
           <el-button
-            type="primary"
-            icon="el-icon-circle-plus-outline"
-            size="mini"
-            @click="newsFormVisible = true;"
-          >新增</el-button>
+              type="primary"
+              icon="el-icon-circle-plus-outline"
+              size="mini"
+              @click="newsFormVisible = true;"
+          >新增
+          </el-button>
         </div>
       </div>
       <!--列表-->
       <el-table
-        border
-        :data="tableData"
-        highlight-current-row
-        v-loading="listLoading"
+          border
+          :data="tableData"
+          highlight-current-row
+          v-loading="listLoading"
       >
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column prop="channel_name" label="通道名称"></el-table-column>
@@ -24,14 +25,14 @@
         <el-table-column prop="status" label="通道状态">
           <template slot-scope="scope">
             <el-switch
-              :inactive-value="0"
-              :active-value="1"
-              v-model="scope.row.status"
-              disabled
+                :inactive-value="0"
+                :active-value="1"
+                v-model="scope.row.status"
+                disabled
             ></el-switch>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="通道描述"></el-table-column>
+        <el-table-column prop="desc" label="通道描述"></el-table-column>
         <el-table-column label="操作" align="left">
           <template slot-scope="scope">
             <el-button type="text" @click="deleteHandle(scope.row.id)" size="mini">删除</el-button>
@@ -39,13 +40,13 @@
         </el-table-column>
       </el-table>
       <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :page-sizes="[10, 15, 20, 25]"
-        :page-size="10"
-        layout="total, prev, pager, next, sizes, jumper"
-        :total="total"
-        style="float:right;margin: 15px;"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :page-sizes="[10, 15, 20, 25]"
+          :page-size="10"
+          layout="total, prev, pager, next, sizes, jumper"
+          :total="total"
+          style="float:right;margin: 15px;"
       ></el-pagination>
     </div>
     <!--新增界面-->
@@ -82,7 +83,8 @@
 </template>
 
 <script>
-import { getsChannel, addChannel, delChannel } from "@/api/channel";
+import {getsChannel, addChannel, delChannel} from "@/api/channel";
+
 export default {
   data() {
     return {
@@ -102,10 +104,10 @@ export default {
       newsFormVisible: false,
       rules: {
         name: [
-          { required: true, message: "请输入通道名称", trigger: "blur" },
+          {required: true, message: "请输入通道名称", trigger: "blur"},
         ],
         code: [
-          { required: true, message: "请输入通道code", trigger: "blur" },
+          {required: true, message: "请输入通道code", trigger: "blur"},
         ],
       },
       statusOptions: [
@@ -148,32 +150,36 @@ export default {
     // 获取用户列表
     getData() {
       this.listLoading = true;
-      getsChannel()
-        .then((res) => {
-          this.listLoading = false;
-          this.tableData = res;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      getsChannel({
+        page: this.page,
+        limit: this.pageSize,
+      })
+          .then((res) => {
+            this.listLoading = false;
+            this.tableData = res.items;
+            this.total = res.total;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     },
     //新增
     addSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           addChannel(this.news)
-            .then(() => {
-              this.$message({
-                message: "操作成功",
-                type: "success",
+              .then(() => {
+                this.$message({
+                  message: "操作成功",
+                  type: "success",
+                });
+                this.$refs[formName].resetFields();
+                this.newsFormVisible = false;
+                this.getData();
+              })
+              .catch((err) => {
+                console.log(err);
               });
-              this.$refs[formName].resetFields();
-              this.newsFormVisible = false;
-              this.getData();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
         }
       });
     },
@@ -182,22 +188,23 @@ export default {
       this.$confirm("确认删除该通道吗?", "提示", {
         type: "warning",
       })
-        .then(() => {
-          this.listLoading = true;
-          delChannel({ id })
-            .then((res) => {
-              this.$message({
-                message: "操作成功",
-                type: "success",
-              });
-              this.listLoading = false;
-              this.getData();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch(() => {});
+          .then(() => {
+            this.listLoading = true;
+            delChannel({id})
+                .then((res) => {
+                  this.$message({
+                    message: "操作成功",
+                    type: "success",
+                  });
+                  this.listLoading = false;
+                  this.getData();
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+          })
+          .catch(() => {
+          });
     },
   },
   created() {

@@ -223,6 +223,17 @@
       <el-form :model="edit" ref="edit" :rules="rules">
         <el-form-item
           prop="channel_currency_name"
+          label="平台名称"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="edit.platform_name"
+            placeholder="平台名称"
+            disabled
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          prop="channel_currency_name"
           label="通道货币名称"
           :label-width="formLabelWidth"
         >

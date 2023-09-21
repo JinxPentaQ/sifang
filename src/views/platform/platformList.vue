@@ -77,13 +77,13 @@
           align="left"
           min-width="100"
         />
-        <el-table-column
-          prop="parent_id"
-          label="推荐平台"
-          align="left"
-          min-width="100"
-        ></el-table-column>
-    
+<!--        <el-table-column-->
+<!--          prop="parent_id"-->
+<!--          label="推荐平台"-->
+<!--          align="left"-->
+<!--          min-width="100"-->
+<!--        ></el-table-column>-->
+
         <el-table-column
           prop="type"
           label="平台类型"
@@ -115,7 +115,7 @@
             </el-radio-group>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="left" fixed="right" min-width="100">
+        <el-table-column label="操作" align="left" fixed="right" min-width="200">
           <template slot-scope="scope">
             <el-button
               type="text"
@@ -218,6 +218,10 @@
         <span>{{ getOptionsText(platFormTypeOptions, detail.type) }}</span>
       </div>
       <div class="info-item">
+        <span>后台白名单</span>
+        <span>{{ detail.white_list }}</span>
+      </div>
+      <div class="info-item">
         <span>备注</span>
         <span>{{ detail.remark }}</span>
       </div>
@@ -254,7 +258,7 @@ export default {
   data() {
     return {
       filters: {
-        type: "0",
+        type: "全部",
       },
       tableData: [],
       total: 0,
@@ -310,7 +314,7 @@ export default {
     getData() {
       getsPlatform({
         ...this.filters,
-        offset: this.page,
+        page: this.page,
         limit: this.pageSize,
       })
         .then((res) => {
