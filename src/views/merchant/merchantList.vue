@@ -80,13 +80,13 @@
           prop="business_no"
           label="商户编号"
           align="left"
-          min-width="100"
+          min-width="80"
         />
         <el-table-column
           prop="business_name"
           label="商户名称"
           align="left"
-          min-width="100"
+          min-width="80"
         >
           <template slot-scope="scope">
             <el-button
@@ -125,13 +125,13 @@
           prop="create_time"
           label="创建时间"
           align="left"
-          min-width="100"
+          min-width="80"
         ></el-table-column>
         <el-table-column
           label="操作"
           align="left"
           fixed="right"
-          min-width="100"
+          min-width="150"
         >
           <template slot-scope="scope">
             <el-button

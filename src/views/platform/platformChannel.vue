@@ -112,7 +112,7 @@
           min-width="100"
         >
           <template slot-scope="scope">
-            {{ getOptionsText(channelOpenOptions, scope.row.buy_is_open) }}
+            {{ getOptionsText(channelOpenOptions, scope.row.sell_is_open) }}
           </template>
         </el-table-column>
         <el-table-column
