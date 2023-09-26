@@ -6,4 +6,3 @@ npm-debug.log
 dist/.htaccess
 dist/.user.ini
 dist/404.html
-/dist/static/config.json

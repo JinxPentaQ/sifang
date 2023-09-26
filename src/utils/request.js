@@ -4,9 +4,8 @@ import {  Message } from 'element-ui'
 // import { getToken } from '@/utils/auth'
 console.log()
 // create an axios instance
-URL = require('../../static/config.json');
 const service = axios.create({
-  baseURL: URL.apiUrl, // url = base url + request url
+  baseURL: 'https://service.tmaa.cc', // url = base url + request url
   // withCredentials: true,  // send cookies when cross-domain requests
   timeout: 20000 // request timeout
 })
