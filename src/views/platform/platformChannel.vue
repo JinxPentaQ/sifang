@@ -38,22 +38,6 @@
           min-width="100"
         />
         <el-table-column
-          prop="platform_currency_code"
-          label="平台币种关联"
-          align="left"
-          min-width="100"
-        />
-        <el-table-column
-          prop="buy_rate"
-          label="购买费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.buy_rate) }}
-          </template>
-        </el-table-column>
-        <el-table-column
           prop="buy_is_open"
           label="购买通道是否开启"
           align="left"
@@ -63,30 +47,10 @@
             {{ getOptionsText(channelOpenOptions, scope.row.buy_is_open) }}
           </template>
         </el-table-column>
-        <el-table-column
-          prop="buy_max_amount"
-          label="购买最大费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.buy_max_amount) }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="buy_min_amount"
-          label="购买最小费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.buy_min_amount) }}
-          </template>
-        </el-table-column>
 
         <el-table-column
           prop="buy_channel_ret_type"
-          label="购买平台通道返回类型"
+          label="购买三方通道返回类型"
           align="left"
           min-width="100"
         >
@@ -101,7 +65,7 @@
         </el-table-column>
         <el-table-column
           prop="buy_channel_code"
-          label="购买平台通道描述"
+          label="购买三方通道描述"
           align="left"
           min-width="100"
         ></el-table-column>
@@ -116,38 +80,8 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="sell_rate"
-          label="	卖出费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.sell_rate) }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="sell_max_amount"
-          label="卖出最大费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.sell_max_amount) }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="sell_min_amount"
-          label="卖出最小费率"
-          align="left"
-          min-width="100"
-        >
-          <template slot-scope="scope">
-            {{ filterNumber(scope.row.sell_min_amount) }}
-          </template>
-        </el-table-column>
-        <el-table-column
           prop="sell_channel_ret_type"
-          label="卖出平台通道返回类型"
+          label="卖出三方通道返回类型"
           align="left"
           min-width="100"
         >
@@ -162,7 +96,7 @@
         </el-table-column>
         <el-table-column
           prop="sell_channel_code"
-          label="卖出平台通道描述"
+          label="卖出三方通道描述"
           align="left"
           min-width="100"
         ></el-table-column>
@@ -187,7 +121,7 @@
     </div>
     <!--新增-->
     <el-dialog
-      title="添加平台通道配置"
+      title="添加三方通道配置"
       :visible.sync="newsFormVisible"
       width="50%"
     >
@@ -216,19 +150,19 @@
     </el-dialog>
     <!--新增-->
     <el-dialog
-      title="编辑平台通道配置"
+      title="编辑三方通道配置"
       :visible.sync="editFormVisible"
       width="50%"
     >
       <el-form :model="edit" ref="edit" :rules="rules">
         <el-form-item
           prop="channel_currency_name"
-          label="平台名称"
+          label="三方名称"
           :label-width="formLabelWidth"
         >
           <el-input
             v-model="edit.platform_name"
-            placeholder="平台名称"
+            placeholder="三方名称"
             disabled
           ></el-input>
         </el-form-item>
@@ -252,12 +186,12 @@
         </el-form-item>
         <el-form-item
           prop="platform_currency_code"
-          label="平台币种关联"
+          label="三方币种关联"
           :label-width="formLabelWidth"
         >
           <el-input
             v-model="edit.platform_currency_code"
-            placeholder="平台币种关联"
+            placeholder="三方币种关联"
           ></el-input>
         </el-form-item>
         <el-form-item
@@ -296,12 +230,12 @@
         </el-form-item>
         <el-form-item
           prop="buy_channel_ret_type"
-          label="购买平台通道返回类型"
+          label="购买三方通道返回类型"
           :label-width="formLabelWidth"
         >
           <el-select
             v-model="edit.buy_channel_ret_type"
-            placeholder="购买平台通道返回类型"
+            placeholder="购买三方通道返回类型"
           >
             <el-option
               v-for="item in buyChannelRetTypeOptions"
@@ -313,12 +247,12 @@
         </el-form-item>
         <el-form-item
           prop="buy_channel_code"
-          label="购买平台通道描述"
+          label="购买三方通道描述"
           :label-width="formLabelWidth"
         >
           <el-input
             v-model="edit.buy_channel_code"
-            placeholder="购买平台通道描述"
+            placeholder="购买三方通道描述"
           ></el-input>
         </el-form-item>
         <el-form-item
@@ -364,12 +298,12 @@
         </el-form-item>
         <el-form-item
           prop="sell_channel_ret_type"
-          label="	卖出平台通道返回类型 "
+          label="	卖出三方通道返回类型 "
           :label-width="formLabelWidth"
         >
           <el-select
             v-model="edit.sell_channel_ret_type"
-            placeholder="卖出平台通道返回类型 "
+            placeholder="卖出三方通道返回类型 "
           >
             <el-option
               v-for="item in buyChannelRetTypeOptions"
@@ -381,12 +315,12 @@
         </el-form-item>
         <el-form-item
           prop="sell_channel_code"
-          label="卖出平台通道描述"
+          label="卖出三方通道描述"
           :label-width="formLabelWidth"
         >
           <el-input
             v-model="edit.sell_channel_code"
-            placeholder="卖出平台通道描述"
+            placeholder="卖出三方通道描述"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -431,7 +365,7 @@ export default {
       formLabelWidth: "160px",
       newsFormVisible: false,
       editFormVisible: false,
-      //添加平台
+      //添加三方
       news: {
         channel_currency_id: "",
         platform_id: "",
@@ -495,7 +429,7 @@ export default {
           console.log(err);
         });
     },
-    //添加平台通道配置
+    //添加三方通道配置
     handleAdd(formName) {
       this.listLoading = true;
       this.$refs[formName].validate((valid) => {
@@ -520,7 +454,7 @@ export default {
         }
       });
     },
-    //编辑平台通道配置
+    //编辑三方通道配置
     editSubmit(formName) {
       this.listLoading = true;
       this.$refs[formName].validate((valid) => {

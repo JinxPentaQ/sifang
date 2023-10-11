@@ -4,7 +4,7 @@ import {
   NotFound,
   Home,
   changePwd,
-  welcome,
+  dashBoard,
   c2cOrder,
   c2cOrderCollect,
   exchangeOrder,
@@ -38,7 +38,7 @@ let routes = [
     iconCls: "el-icon-message", //图标样式class
     children: [
       //欢迎页
-      { path: "/welcome", component: welcome, name: "欢迎页", hidden: true },
+      { path: "/dashBoard", component: dashBoard, name: "欢迎页", hidden: true },
       {
         path: "/changePwd",
         component: changePwd,
@@ -100,30 +100,30 @@ let routes = [
       {
         path: "/platform",
         component: multiLevelMenu,
-        name: "平台管理",
+        name: "三方管理",
         icon: "el-icon-data-analysis",
         children: [
           {
             path: "/platformList",
             component: platformList,
-            name: "平台列表",
+            name: "三方列表",
           },
           {
             path: "/platformWallet/:id",
             component: platformWallet,
-            name: "平台钱包",
+            name: "三方钱包",
             hidden: true,
           },
           {
             path: "/platformWalletRecords/:id",
             component: platformWalletRecords,
-            name: "平台钱包记录",
+            name: "三方钱包记录",
             hidden: true,
           },
           {
             path: "/platformChannel/:id",
             component: platformChannel,
-            name: "平台通道配置",
+            name: "三方通道配置",
             hidden: true,
           },
         ],

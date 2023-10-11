@@ -122,7 +122,7 @@
         </el-table-column>
         <el-table-column
             prop="seller_user_name"
-            label="上游"
+            label="商户名称"
             align="left"
             min-width="80"
         >
@@ -139,7 +139,7 @@
         </el-table-column>
         <el-table-column
             prop="buyer_user_name"
-            label="下游"
+            label="通道名称"
             align="left"
             min-width="80"
         >
@@ -161,6 +161,13 @@
           <template slot-scope="scope">
             {{ getOptionsText(orderStatusOptions, scope.row.status) }}
           </template>
+        </el-table-column>
+        <el-table-column
+            prop="remark"
+            label="备注"
+            align="left"
+            min-width="60"
+        >
         </el-table-column>
 
         <el-table-column

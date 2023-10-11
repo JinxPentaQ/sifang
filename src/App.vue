@@ -159,7 +159,8 @@ body {
 .titleContent {
   height: 35px;
   line-height: 35px;
-  background: #f2f4f7;
+  color: #67757C;
+  background: #f2f2f2;
   border-radius: 5px 5px 0 0;
   padding-left: 10px;
   margin-bottom: 15px;
@@ -182,7 +183,7 @@ body {
   margin-left: 2.5%;
   margin: 0 auto;
   margin-top: 30px;
-  background-color: #f2f4f7;
+  background-color: #f2f2f2;
   height: 40px;
   line-height: 40px;
   border: 1px solid #becfd9;
@@ -212,24 +213,25 @@ body {
   background-color: #f3f3f4 !important;
 }
 .el-table th {
-  background: #f2f4f7 !important;
+  background: #f2f2f2 !important;
 }
 .el-table {
   width: 95%;
   margin: 0 auto;
-  border-left: 1px solid #becfd9 !important;
-  border-top: 1px solid #becfd9 !important;
-  border-bottom: 1px solid #becfd9 !important;
-  border-right: 1px solid #becfd9 !important;
+  color: #67757C !important;
+  border-left: 1px solid #e2e2e2 !important;
+  border-top: 1px solid #e2e2e2 !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+  border-right: 1px solid #e2e2e2 !important;
 }
 .el-table--border td,
 .el-table--border th,
 .el-table__body-wrapper .el-table--border.is-scrolling-left ~ .el-table__fixed {
-  border-right: 1px solid #becfd9 !important;
+  border-right: 1px solid #e2e2e2 !important;
 }
 .el-table td,
 .el-table th.is-leaf {
-  border-bottom: 1px solid #becfd9 !important;
+  border-bottom: 1px solid #e2e2e2 !important;
 }
 .el-button--primary {
   background: #409eff !important;
@@ -279,7 +281,8 @@ body {
 }
 .el-table th > .cell {
   font-size: 14px;
-  color: #333333;
+  color: #67757c;
+  font-weight: normal;
 }
 .el-pagination .el-pagination__sizes .el-input input.el-input__inner {
   width: 103px !important;
