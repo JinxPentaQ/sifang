@@ -6,6 +6,7 @@
         style="width: 227px; cursor: pointer"
         @click.native="$router.push({ path: '/dashBoard' })"
       >
+      <img src="../assets/hdLogo.png" alt="">
       恒达支付管理系统
       </el-col>
       <div class="userinfo">
@@ -260,13 +261,12 @@ export default {
     }
     .logo {
       height: 60px;
-      font-size: 22px;
-      padding-left: 20px;
-      padding-right: 20px;
+      font-size: 18px;
+      padding-left: 8px;
       img {
         width: 40px;
         float: left;
-        margin: 10px 10px 10px 18px;
+        margin: 10px 10px 10px ;
       }
       .txt {
         color: #fff;

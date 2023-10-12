@@ -57,30 +57,19 @@ body {
   margin-bottom: 10px !important;
 }
 .toolNav {
-  margin: 0 auto;
-  display: block;
+  display: flex;
   height: 44px;
   line-height: 44px;
-  background: #f2f4f7;
+  background: #f2f2f2;
   border-radius: 5px 5px 0 0;
   border-bottom: none;
-  position: relative;
-}
-.toolNav:before {
-  content: "";
-  display: block;
-  height: 100%;
-  margin-left: 0px;
-  border-left: 1px solid rgba(190, 207, 217, 1);
-  border-top: 1px solid rgba(190, 207, 217, 1);
-  border-right: 1px solid rgba(190, 207, 217, 1);
-  border-radius: 5px 5px 0 0;
+  border-left: 1px solid #e2e2e2;
+  border-top: 1px solid #e2e2e2;
+  border-right: 1px solid #e2e2e2;
+  padding: 0 10px;
 }
 .toolNavList {
-  position: absolute;
-  left: 5px;
-  top: 0;
-  z-index: 9;
+  margin-left: auto
 }
 .el-table td {
   padding: 0 !important;
@@ -124,8 +113,9 @@ body {
 }
 .el-dialog__header,
 .el-message-box__header {
+  color: #67757C;
   box-shadow: 0px 2px 8px 0px rgba(79, 79, 79, 0.15);
-  background: rgba(245, 247, 250, 1);
+  background: #f2f2f2;
   padding: 10px !important;
   border-radius: 6px 6px 0 0 !important;
 }

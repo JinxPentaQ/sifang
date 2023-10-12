@@ -146,7 +146,8 @@
               size="mini"
               icon="el-icon-notebook-2"
               @click="handleWalletRecords(scope.row.id)"
-              >钱包记录</el-button>
+              >钱包记录</el-button
+            >
             <el-button
               type="text"
               size="mini"
@@ -198,6 +199,26 @@
     </el-dialog>
     <!--商户详情-->
     <el-dialog title="商户信息" :visible.sync="infoVisible" width="50%">
+      <div class="infoOperate">
+        <el-button
+          type="primary"
+          size="mini"
+          @click="handleResetPwd(detail.id, '0')"
+          >重置密码</el-button
+        >
+        <el-button
+          type="primary"
+          size="mini"
+          @click="handleResetSerect(detail.id)"
+          >重置密钥</el-button
+        >
+        <el-button
+          type="primary"
+          size="mini"
+          @click="handleResetGoogle(detail.id, '1')"
+          >重置Google密钥</el-button
+        >
+      </div>
       <div class="info-item">
         <span>商户编号</span>
         <span>{{ detail.business_no }}</span>
@@ -229,24 +250,6 @@
         <span>备注</span>
         <span>{{ detail.remark }}</span>
       </div>
-      <el-button
-        type="text"
-        size="mini"
-        @click="handleResetPwd(detail.id, '0')"
-        >重置密码</el-button
-      >
-      <el-button
-        type="text"
-        size="mini"
-        @click="handleResetSerect(detail.id)"
-        >重置密钥</el-button
-      >
-      <el-button
-        type="text"
-        size="mini"
-        @click="handleResetGoogle(detail.id, '1')"
-        >重置Google密钥</el-button
-      >
     </el-dialog>
   </section>
 </template>
@@ -436,17 +439,28 @@ export default {
   vertical-align: bottom;
 }
 .el-dialog__body {
+  .infoOperate {
+    margin-bottom: 20px;
+  }
   .info-item {
+    border: 1px solid #e2e2e2;
+    border-bottom: none;
     span:nth-child(1) {
-      width: 80px;
       display: inline-block;
+      width: 100px;
       font-weight: 700;
       font-size: 14px;
       color: #606266;
-      line-height: 50px;
-      text-align: right;
-      padding-right: 20px;
+      line-height: 40px;
+      padding-left: 10px;
+      border-right: 1px solid #e2e2e2;
     }
+    span:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+  .info-item:last-child {
+    border-bottom: 1px solid #e2e2e2;
   }
 }
 </style>

@@ -4,9 +4,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box first">
           <div class="left">
-            <div class="name">平台成功总数据</div>
+            <div class="name">代收成功数据</div>
             <small class="name-tips">Todays Order</small>
-            <div class="value">{{ source.all.total_success_amount }}</div>
+            <div class="value">{{ filterNumber(source.all.buy_total_success_amount)  || 0}}</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -19,9 +19,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box second">
           <div class="left">
-            <div class="name">平台成功总订单/条</div>
+            <div class="name">代收成功订单/条</div>
             <small class="name-tips">sum number</small>
-            <div class="value">{{ source.all.total_success_orders }}</div>
+            <div class="value">{{ source.all.buy_total_success_orders }}</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -34,9 +34,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box third">
           <div class="left">
-            <div class="name">订单成功率</div>
+            <div class="name">代付成功数据</div>
             <small class="name-tips">Monthly Deduction</small>
-            <div class="value">{{ source.all.success_rate }}</div>
+            <div class="value">{{ filterNumber(source.all.sell_total_success_amount) || 0}}</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -49,9 +49,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box fourth">
           <div class="left">
-            <div class="name">平台总利润</div>
+            <div class="name">代收成功订单/条</div>
             <small class="name-tips">Weekly Revenue</small>
-            <div class="value">{{ source.all.total_profit }}</div>
+            <div class="value">{{ source.all.sell_total_success_orders || 0}}</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -66,9 +66,11 @@
       <el-col :md="6" :xl="6">
         <div class="card-box first">
           <div class="left">
-            <div class="name">今日平台成功总数据</div>
+            <div class="name">今日代收成功数据</div>
             <small class="name-tips">Todays Order</small>
-            <div class="value">{{ source.today.total_success_amount }}</div>
+            <div class="value">
+              {{ filterNumber(source.today_buy.buy_total_success_amount) || 0}}
+            </div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -81,9 +83,12 @@
       <el-col :md="6" :xl="6">
         <div class="card-box second">
           <div class="left">
-            <div class="name">今日平台成功总订单/条</div>
+            <div class="name">今日代收订单/成功订单</div>
             <small class="name-tips">sum number</small>
-            <div class="value">{{ source.today.total_success_orders }}</div>
+            <div class="value">
+              {{ source.today_buy.buy_total_orders }} /
+              {{ source.today_buy.buy_total_success_orders }}
+            </div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -96,9 +101,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box third">
           <div class="left">
-            <div class="name">今日订单成功率</div>
+            <div class="name">今日代收订单成功率</div>
             <small class="name-tips">Monthly Deduction</small>
-            <div class="value">{{ source.today.success_rate }}</div>
+            <div class="value">{{ source.today_buy.buy_success_rate }}%</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -111,9 +116,9 @@
       <el-col :md="6" :xl="6">
         <div class="card-box fourth">
           <div class="left">
-            <div class="name">今日平台总利润</div>
+            <div class="name">今日代收利润</div>
             <small class="name-tips">Weekly Revenue</small>
-            <div class="value">{{ source.today.total_profit }}</div>
+            <div class="value">{{ filterNumber(source.today_buy.buy_total_profit) || 0 }}</div>
           </div>
           <div class="right">
             <img src="../../assets/arrow-graph-up-right.png" alt="" />
@@ -126,54 +131,94 @@
     </el-row>
     <el-row :gutter="40">
       <el-col :md="6" :xl="6">
-        <div class="card-box-yesterday first">
+        <div class="card-box first">
           <div class="left">
-            <i class="el-icon-coin"></i>
+            <div class="name">今日代付成功数据</div>
+            <small class="name-tips">Todays Order</small>
+            <div class="value">
+              {{ filterNumber(source.today_sell.sell_total_success_amount) || 0 }}
+            </div>
           </div>
           <div class="right">
-            <div class="name">昨日平台成功总数据</div>
-            <div class="value">{{ source.yesterday.total_success_amount }}</div>
+            <img src="../../assets/arrow-graph-up-right.png" alt="" />
+            up from
+            <br />
+            last month
           </div>
         </div>
       </el-col>
       <el-col :md="6" :xl="6">
-        <div class="card-box-yesterday second">
+        <div class="card-box second">
           <div class="left">
-            <i class="el-icon-notebook-1"></i>
+            <div class="name">今日代付订单/成功订单</div>
+            <small class="name-tips">sum number</small>
+            <div class="value">
+              {{ source.today_sell.sell_total_orders }} /
+              {{ source.today_sell.sell_total_success_orders }}
+            </div>
           </div>
           <div class="right">
-            <div class="name">昨日平台成功总订单/条</div>
-            <div class="value">{{ source.yesterday.total_success_orders }}</div>
+            <img src="../../assets/arrow-graph-up-right.png" alt="" />
+            up from
+            <br />
+            last month
           </div>
         </div>
       </el-col>
       <el-col :md="6" :xl="6">
-        <div class="card-box-yesterday third">
+        <div class="card-box third">
           <div class="left">
-            <i class="el-icon-goods"></i>
+            <div class="name">今日代付订单成功率</div>
+            <small class="name-tips">Monthly Deduction</small>
+            <div class="value">{{ source.today_sell.sell_success_rate }}%</div>
           </div>
           <div class="right">
-            <div class="name">昨日订单成功率</div>
-            <div class="value">{{ source.yesterday.success_rate }}</div>
+            <img src="../../assets/arrow-graph-up-right.png" alt="" />
+            more than
+            <br />
+            last year
           </div>
         </div>
       </el-col>
       <el-col :md="6" :xl="6">
-        <div class="card-box-yesterday fourth">
+        <div class="card-box fourth">
           <div class="left">
-            <i class="el-icon-data-line"></i>
+            <div class="name">今日代付利润</div>
+            <small class="name-tips">Weekly Revenue</small>
+            <div class="value">{{ filterNumber(source.today_sell.sell_total_profit) || 0 }}</div>
           </div>
           <div class="right">
-            <div class="name">昨日平台总利润</div>
-            <div class="value">{{ source.yesterday.total_profit }}</div>
+            <img src="../../assets/arrow-graph-up-right.png" alt="" />
+            more than
+            <br />
+            last year
           </div>
         </div>
       </el-col>
     </el-row>
+    <div class="box-wapper" v-if="walletList.length > 0">
+      <div class="box" v-for="(item, index) in walletList" :key="index">
+        <div class="box-title">{{ item.platform_name }}</div>
+        <div class="empty" v-if="item.platform_wallet.length <= 0">
+          暂无数据
+        </div>
+        <div v-else>
+          <div
+            class="box-content"
+            v-for="(wallet, walletIndex) in item.platform_wallet"
+            :key="walletIndex"
+          >
+            <div class="name">{{ wallet.currency_name }}</div>
+            <div class="amount">{{ filterNumber(wallet.balance_fee) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import { getHomeReport } from "@/api/dashBoard";
+import { getHomeReport, getHomeWallet } from "@/api/dashBoard";
+import { filterNumber } from "@/utils/func";
 export default {
   data() {
     return {
@@ -181,6 +226,7 @@ export default {
     };
   },
   methods: {
+    filterNumber,
     // 获取首页数据
     getData() {
       this.listLoading = true;
@@ -188,9 +234,15 @@ export default {
         this.source = { ...res };
       });
     },
+    getWallet() {
+      getHomeWallet().then((res) => {
+        this.walletList = res;
+      });
+    },
   },
   created() {
     this.getData();
+    this.getWallet();
   },
   mounted() {},
 };
@@ -262,7 +314,7 @@ export default {
     text-align: center;
     font-size: 30px;
     line-height: 74px;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
     margin-right: 20px;
     border-radius: 4px;
     .el-icon-coin,
@@ -286,7 +338,6 @@ export default {
       font-size: 21px;
       line-height: 32px;
     }
-   
   }
 }
 .card-box-yesterday.first {
@@ -308,6 +359,63 @@ export default {
 .card-box-yesterday.fourth {
   .left {
     background: #fc4b6c;
+  }
+}
+.box-wapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  .box {
+    flex: 1;
+    width: calc(100% - 120px) / 4 !important;
+    min-width: calc((100% - 120px) / 4);
+    max-width: calc((100% - 120px) / 4);
+    background-color: #fff;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    .box-title {
+      color: #67757c;
+      font-size: 18px;
+      font-weight: 400;
+      white-space: nowrap;
+      padding: 12px 20px;
+      border-bottom: 1px solid rgba(97, 106, 120, 0.07);
+    }
+    .box-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      font-size: 14px;
+      color: #67757c;
+      。
+      .amount {
+        height: 20px;
+        line-height: 20px;
+        color: #fff !important;
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+        padding: 2px 8px;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 4px;
+        background-color: #1e88e5;
+      }
+    }
+    .empty {
+      color: #67757c;
+      text-align: center;
+      margin-top: 20px;
+
+    }
+  }
+  .box:nth-child(4n) {
+    /* 去除第3n个的margin-right */
+    margin-right: 0;
   }
 }
 

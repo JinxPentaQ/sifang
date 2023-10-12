@@ -306,3 +306,8 @@ export  const orderNotifyStatus = [
     value: 3,
   },
 ]
+
+export const c2cOrderType = {
+  collect: 1,
+  pay: 2
+}

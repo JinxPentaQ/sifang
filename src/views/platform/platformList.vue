@@ -53,12 +53,7 @@
         highlight-current-row
         v-loading="listLoading"
       >
-        <el-table-column
-          prop="id"
-          label="三方ID"
-          align="left"
-          min-width="50"
-        />
+        <el-table-column prop="id" label="三方ID" align="left" min-width="50" />
         <el-table-column
           prop="platform_name"
           label="三方名称"
@@ -77,12 +72,12 @@
           align="left"
           min-width="100"
         />
-<!--        <el-table-column-->
-<!--          prop="parent_id"-->
-<!--          label="推荐三方"-->
-<!--          align="left"-->
-<!--          min-width="100"-->
-<!--        ></el-table-column>-->
+        <!--        <el-table-column-->
+        <!--          prop="parent_id"-->
+        <!--          label="推荐三方"-->
+        <!--          align="left"-->
+        <!--          min-width="100"-->
+        <!--        ></el-table-column>-->
 
         <el-table-column
           prop="type"
@@ -115,7 +110,12 @@
             </el-radio-group>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="left" fixed="right" min-width="200">
+        <el-table-column
+          label="操作"
+          align="left"
+          fixed="right"
+          min-width="200"
+        >
           <template slot-scope="scope">
             <el-button
               type="text"
@@ -136,7 +136,8 @@
               size="mini"
               icon="el-icon-s-shop"
               @click="handleCurrenyChannel(scope.row.id)"
-              >通道配置</el-button>
+              >通道配置</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -152,7 +153,7 @@
       ></el-pagination>
     </div>
     <!--新增-->
-    <el-dialog title="添加三方" :visible.sync="newsFormVisible" width="30%"  >
+    <el-dialog title="添加三方" :visible.sync="newsFormVisible" width="30%">
       <el-form :model="news" ref="news" :rules="rules" size="mini">
         <el-form-item
           prop="user_name"
@@ -175,7 +176,11 @@
         >
           <el-input v-model="news.remark" placeholder="三方备注"></el-input>
         </el-form-item>
-        <el-form-item label="推荐三方ID" prop="type" :label-width="formLabelWidth">
+        <el-form-item
+          label="推荐三方ID"
+          prop="type"
+          :label-width="formLabelWidth"
+        >
           <el-select v-model="news.type" placeholder="推荐三方ID" clearable>
             <el-option
               v-for="(item, index) in tableData"
@@ -195,6 +200,14 @@
     </el-dialog>
     <!--三方详情-->
     <el-dialog title="三方信息" :visible.sync="infoVisible" width="50%">
+      <div class="infoOperate">
+        <el-button type="primary" size="mini" @click="handleResetPwd(detail.id)"
+          >重置密码</el-button
+        >
+        <el-button type="primary" size="mini" @click="handleResetGoogle(detail.id)"
+          >重置Google密钥</el-button
+        >
+      </div>
       <div class="info-item">
         <span>三方ID</span>
         <span>{{ detail.id }}</span>
@@ -225,15 +238,7 @@
         <span>备注</span>
         <span>{{ detail.remark }}</span>
       </div>
-      <el-button type="text" size="mini" @click="handleResetPwd(detail.id)"
-        >重置密码</el-button
-      >
-      <el-button
-        type="text"
-        size="mini"
-        @click="handleResetGoogle(detail.id)"
-        >重置Google密钥</el-button
-      >
+    
     </el-dialog>
   </section>
 </template>
@@ -382,13 +387,13 @@ export default {
     },
     // 查看钱包
     handleWallet(id) {
-      this.$router.push(`/platformWallet/${id}`)
+      this.$router.push(`/platformWallet/${id}`);
     },
     handleWalletRecords(id) {
-      this.$router.push(`/platformWalletRecords/${id}`)
+      this.$router.push(`/platformWalletRecords/${id}`);
     },
-      // 通道设置
-      handleCurrenyChannel(id) {
+    // 通道设置
+    handleCurrenyChannel(id) {
       this.$router.push(`/platformChannel/${id}`);
     },
   },
@@ -415,17 +420,28 @@ export default {
   vertical-align: bottom;
 }
 .el-dialog__body {
+  .infoOperate {
+    margin-bottom: 20px;
+  }
   .info-item {
+    border: 1px solid #e2e2e2;
+    border-bottom: none;
     span:nth-child(1) {
-      width: 80px;
       display: inline-block;
+      width: 100px;
       font-weight: 700;
       font-size: 14px;
       color: #606266;
-      line-height: 50px;
-      text-align: right;
-      padding-right: 20px;
+      line-height: 40px;
+      padding-left: 10px;
+      border-right: 1px solid #e2e2e2;
     }
+    span:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+  .info-item:last-child {
+    border-bottom: 1px solid #e2e2e2;
   }
 }
 </style>

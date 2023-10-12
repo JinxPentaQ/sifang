@@ -8,3 +8,11 @@ export function getHomeReport(data) {
     data
   })
 }
+// 获取三方钱包
+export function getHomeWallet(data) {
+  return request({
+    url: 'App/Platform_PlatformWalletController/GetAllPlatformWallet',
+    method: 'post',
+    data
+  })
+}
