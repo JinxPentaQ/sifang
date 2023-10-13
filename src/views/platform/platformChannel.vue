@@ -209,6 +209,27 @@
           </el-select>
         </el-form-item>
         <el-form-item
+          prop="buy_fixed_rate"
+          label="买入固定费率"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="edit.buy_fixed_rate"
+            placeholder="买入固定费率"
+          ></el-input>
+        </el-form-item>
+        <el-form-item
+          prop="sell_fixed_rate "
+          label="卖出固定费率"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="edit.sell_fixed_rate "
+            placeholder="卖出固定费率"
+          ></el-input>
+        </el-form-item>
+        
+        <el-form-item
           prop="buy_max_amount"
           label="购买最大费率"
           :label-width="formLabelWidth"
