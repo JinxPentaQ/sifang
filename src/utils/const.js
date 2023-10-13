@@ -306,7 +306,7 @@ export  const orderNotifyStatus = [
     value: 3,
   },
 ]
-
+// 订单类型 1 代收 2代付
 export const c2cOrderType = {
   collect: 1,
   pay: 2
