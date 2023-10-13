@@ -4,7 +4,7 @@ import Home from "@/views/Home.vue";
 import multiLevelMenu from "@/views/layout/multiLevelMenu.vue";
 import changePwd from "@/views/changePwd.vue";
 //欢迎页
-import welcome from "@/views/welcome.vue";
+import dashBoard from "@/views/dashBoard/index.vue";
 
 //订单
 import c2cOrder from "@/views/order/c2cOrder.vue";
@@ -17,7 +17,7 @@ import merchantWallet from "@/views/merchant/merchantWallet.vue";
 import merchantWalletRecords from "@/views/merchant/merchantWalletRecords.vue";
 import merchantChannel from "@/views/merchant/merchantChannel.vue";
 
-//平台
+// 三方
 import platformList from "@/views/platform/platformList.vue";
 import platformWallet from "@/views/platform/platformWallet.vue";
 import platformWalletRecords from "@/views/platform/platformWalletRecords.vue";
@@ -46,7 +46,7 @@ export {
   NotFound,
   Home,
   changePwd,
-  welcome,
+  dashBoard,
   c2cOrder,
   c2cOrderCollect,
   exchangeOrder,

@@ -53,15 +53,10 @@
         highlight-current-row
         v-loading="listLoading"
       >
-        <el-table-column
-          prop="id"
-          label="平台ID"
-          align="left"
-          min-width="50"
-        />
+        <el-table-column prop="id" label="三方ID" align="left" min-width="50" />
         <el-table-column
           prop="platform_name"
-          label="平台名称"
+          label="三方名称"
           align="left"
           min-width="100"
         >
@@ -73,20 +68,20 @@
         </el-table-column>
         <el-table-column
           prop="account"
-          label="平台账号"
+          label="三方账号"
           align="left"
           min-width="100"
         />
-<!--        <el-table-column-->
-<!--          prop="parent_id"-->
-<!--          label="推荐平台"-->
-<!--          align="left"-->
-<!--          min-width="100"-->
-<!--        ></el-table-column>-->
+        <!--        <el-table-column-->
+        <!--          prop="parent_id"-->
+        <!--          label="推荐三方"-->
+        <!--          align="left"-->
+        <!--          min-width="100"-->
+        <!--        ></el-table-column>-->
 
         <el-table-column
           prop="type"
-          label="平台类型"
+          label="三方类型"
           align="left"
           min-width="100"
         >
@@ -96,7 +91,7 @@
         </el-table-column>
         <el-table-column
           prop="remark"
-          label="平台备注"
+          label="三方备注"
           align="left"
           min-width="100"
         ></el-table-column>
@@ -115,7 +110,12 @@
             </el-radio-group>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="left" fixed="right" min-width="200">
+        <el-table-column
+          label="操作"
+          align="left"
+          fixed="right"
+          min-width="200"
+        >
           <template slot-scope="scope">
             <el-button
               type="text"
@@ -136,7 +136,8 @@
               size="mini"
               icon="el-icon-s-shop"
               @click="handleCurrenyChannel(scope.row.id)"
-              >通道配置</el-button>
+              >通道配置</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -152,31 +153,35 @@
       ></el-pagination>
     </div>
     <!--新增-->
-    <el-dialog title="添加平台" :visible.sync="newsFormVisible" width="30%"  >
+    <el-dialog title="添加三方" :visible.sync="newsFormVisible" width="30%">
       <el-form :model="news" ref="news" :rules="rules" size="mini">
         <el-form-item
           prop="user_name"
-          label="平台名称"
+          label="三方名称"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="news.user_name" placeholder="平台名称"></el-input>
+          <el-input v-model="news.user_name" placeholder="三方名称"></el-input>
         </el-form-item>
         <el-form-item
           prop="account"
-          label="平台账号"
+          label="三方账号"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="news.account" placeholder="平台账号"></el-input>
+          <el-input v-model="news.account" placeholder="三方账号"></el-input>
         </el-form-item>
         <el-form-item
           prop="remark"
-          label="平台备注"
+          label="三方备注"
           :label-width="formLabelWidth"
         >
-          <el-input v-model="news.remark" placeholder="平台备注"></el-input>
+          <el-input v-model="news.remark" placeholder="三方备注"></el-input>
         </el-form-item>
-        <el-form-item label="推荐平台ID" prop="type" :label-width="formLabelWidth">
-          <el-select v-model="news.type" placeholder="推荐平台ID" clearable>
+        <el-form-item
+          label="推荐三方ID"
+          prop="type"
+          :label-width="formLabelWidth"
+        >
+          <el-select v-model="news.type" placeholder="推荐三方ID" clearable>
             <el-option
               v-for="(item, index) in tableData"
               :label="item.user_name"
@@ -193,28 +198,36 @@
         <el-button size="mini" @click="newsFormVisible = false">取消</el-button>
       </div>
     </el-dialog>
-    <!--平台详情-->
-    <el-dialog title="平台信息" :visible.sync="infoVisible" width="50%">
+    <!--三方详情-->
+    <el-dialog title="三方信息" :visible.sync="infoVisible" width="50%">
+      <div class="infoOperate">
+        <el-button type="primary" size="mini" @click="handleResetPwd(detail.id)"
+          >重置密码</el-button
+        >
+        <el-button type="primary" size="mini" @click="handleResetGoogle(detail.id)"
+          >重置Google密钥</el-button
+        >
+      </div>
       <div class="info-item">
-        <span>平台ID</span>
+        <span>三方ID</span>
         <span>{{ detail.id }}</span>
       </div>
       <div class="info-item">
-        <span>平台名称</span>
+        <span>三方名称</span>
         <span>{{ detail.platform_name }}</span>
       </div>
       <div class="info-item">
-        <span>平台状态</span>
+        <span>三方状态</span>
         <el-tag :type="getOptionsTag(platFormStatusOptions, detail.status)">{{
           getOptionsText(platFormStatusOptions, detail.status)
         }}</el-tag>
       </div>
       <div class="info-item">
-        <span>平台账号</span>
+        <span>三方账号</span>
         <span>{{ detail.account }}</span>
       </div>
       <div class="info-item">
-        <span>平台类型</span>
+        <span>三方类型</span>
         <span>{{ getOptionsText(platFormTypeOptions, detail.type) }}</span>
       </div>
       <div class="info-item">
@@ -225,15 +238,7 @@
         <span>备注</span>
         <span>{{ detail.remark }}</span>
       </div>
-      <el-button type="text" size="mini" @click="handleResetPwd(detail.id)"
-        >重置密码</el-button
-      >
-      <el-button
-        type="text"
-        size="mini"
-        @click="handleResetGoogle(detail.id)"
-        >重置Google密钥</el-button
-      >
+    
     </el-dialog>
   </section>
 </template>
@@ -270,20 +275,20 @@ export default {
       formLabelWidthLong: "200px",
       newsFormVisible: false,
       infoVisible: false,
-      //添加平台
+      //添加三方
       news: {},
-      //平台基本信息
+      //三方基本信息
       detail: {},
       bindFormVisible: false,
       rules: {
         user_name: [
-          { required: true, message: "请输入平台名称！", trigger: "blur" },
+          { required: true, message: "请输入三方名称！", trigger: "blur" },
         ],
         account: [
-          { required: true, message: "请输入平台账号！", trigger: "blur" },
+          { required: true, message: "请输入三方账号！", trigger: "blur" },
         ],
         remark: [
-          { required: true, message: "请输入平台备注！", trigger: "blur" },
+          { required: true, message: "请输入三方备注！", trigger: "blur" },
         ],
       },
       platFormTypeOptions,
@@ -326,7 +331,7 @@ export default {
           console.log(err);
         });
     },
-    //添加平台
+    //添加三方
     handleAdd(formName) {
       this.listLoading = true;
       this.$refs[formName].validate((valid) => {
@@ -348,7 +353,7 @@ export default {
         }
       });
     },
-    // 修改平台状态
+    // 修改三方状态
     handleStatusChange(status, row) {
       modPlatformStatus({ id: row.id, status }).then(() => {
         this.$message({
@@ -382,13 +387,13 @@ export default {
     },
     // 查看钱包
     handleWallet(id) {
-      this.$router.push(`/platformWallet/${id}`)
+      this.$router.push(`/platformWallet/${id}`);
     },
     handleWalletRecords(id) {
-      this.$router.push(`/platformWalletRecords/${id}`)
+      this.$router.push(`/platformWalletRecords/${id}`);
     },
-      // 通道设置
-      handleCurrenyChannel(id) {
+    // 通道设置
+    handleCurrenyChannel(id) {
       this.$router.push(`/platformChannel/${id}`);
     },
   },
@@ -415,17 +420,28 @@ export default {
   vertical-align: bottom;
 }
 .el-dialog__body {
+  .infoOperate {
+    margin-bottom: 20px;
+  }
   .info-item {
+    border: 1px solid #e2e2e2;
+    border-bottom: none;
     span:nth-child(1) {
-      width: 80px;
       display: inline-block;
+      width: 100px;
       font-weight: 700;
       font-size: 14px;
       color: #606266;
-      line-height: 50px;
-      text-align: right;
-      padding-right: 20px;
+      line-height: 40px;
+      padding-left: 10px;
+      border-right: 1px solid #e2e2e2;
     }
+    span:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+  .info-item:last-child {
+    border-bottom: 1px solid #e2e2e2;
   }
 }
 </style>

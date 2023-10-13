@@ -57,3 +57,11 @@ export function backOrder(data) {
     data
   })
 }
+
+export function getOrderStatistics(data) {
+  return request({
+    url: 'App/Order_TradeOrderController/GetStatistics',
+    method: 'post',
+    data
+  })
+} 

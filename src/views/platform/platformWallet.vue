@@ -76,7 +76,7 @@
               type="primary"
               size="mini"
               @click="onClickEdit(scope.row)"
-              >修改</el-button
+              >编辑</el-button
             >
           </template>
         </el-table-column>
@@ -108,7 +108,7 @@
       </div>
     </el-dialog>
     <!--修改-->
-    <el-dialog title="修改钱包" :visible.sync="editVisible" width="50%">
+    <el-dialog title="编辑钱包" :visible.sync="editVisible" width="50%">
       <el-form :model="edit" ref="edit" :rules="editRules">
         <el-form-item
           prop="currency_id"
@@ -124,6 +124,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
+        <p class="tips">*说明: 增加余额 +10000 减少余额 -10000</p>
         <el-form-item prop="amount" label="金额" :label-width="formLabelWidth">
           <el-input
             v-model="edit.amount"
@@ -305,6 +306,11 @@ export default {
       text-align: right;
       padding-right: 20px;
     }
+  }
+  .tips {
+    padding-left: 120px;
+    color: red;
+    font-size: 12px;
   }
 }
 </style>

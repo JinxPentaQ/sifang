@@ -32,7 +32,7 @@ export const orderStatusOptions = [
     value: '8',
   },
   {
-    text: "超时",
+    text: "失败",
     value: '9',
   },
 ]
@@ -257,7 +257,7 @@ export const bySellTypeOptions = [
     value: bySellType.user,
   },
   {
-    text: '平台',
+    text: '三方',
     value: bySellType.platform,
   },
 ]
@@ -306,3 +306,8 @@ export  const orderNotifyStatus = [
     value: 3,
   },
 ]
+
+export const c2cOrderType = {
+  collect: 1,
+  pay: 2
+}

@@ -167,7 +167,7 @@ export default {
                   "token",
                   JSON.stringify(res.token)
                 );
-                this.$router.push({ path: "/welcome" });
+                this.$router.push({ path: "/dashBoard" });
                 location.reload();
             })
         } else {

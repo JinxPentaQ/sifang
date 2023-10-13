@@ -157,12 +157,7 @@
           align="left"
           min-width="100"
         />
-        <el-table-column
-          prop="type"
-          label="类型"
-          align="left"
-          min-width="100"
-        >
+        <el-table-column prop="type" label="类型" align="left" min-width="100">
           <template slot-scope="scope">
             {{ getOptionsText(memberTypeOptions, scope.row.type) }}
           </template>
@@ -184,7 +179,11 @@
           min-width="100"
         >
           <template slot-scope="scope">
-            <el-tag :type="getOptionsTag(authIdentityOptions, scope.row.auth_identity)">
+            <el-tag
+              :type="
+                getOptionsTag(authIdentityOptions, scope.row.auth_identity)
+              "
+            >
               <!-- <i :class="getOptionsItem(authIdentityOptions,  scope.row.auth_identity).icon"></i> -->
               {{ getOptionsText(authIdentityOptions, scope.row.auth_identity) }}
             </el-tag>
@@ -211,7 +210,12 @@
             </el-radio-group>
           </template>
         </el-table-column>
-        <el-table-column label="操作" align="left" fixed="right" min-width="140">
+        <el-table-column
+          label="操作"
+          align="left"
+          fixed="right"
+          min-width="140"
+        >
           <template slot-scope="scope">
             <el-button
               type="text"
@@ -243,6 +247,14 @@
     </div>
     <!--会员详情-->
     <el-dialog title="会员信息" :visible.sync="infoVisible" width="50%">
+      <div class="infoOperate">
+        <el-button type="text" size="mini" @click="handleResetPwd(detail.id)"
+          >重置密码</el-button
+        >
+        <el-button type="text" size="mini" @click="handleResetGoogle(detail.id)"
+          >重置Google密钥</el-button
+        >
+      </div>
       <div class="info-item">
         <span>会员昵称</span>
         <span>{{ detail.nickname }}</span>
@@ -267,25 +279,22 @@
       </div>
       <div class="info-item">
         <span>是否身份认证</span>
-        <el-tag :type="getOptionsTag(authIdentityOptions, detail.auth_identity)">
-            <i :class="getOptionsItem(authIdentityOptions,  detail.auth_identity).icon"></i>
-            {{ getOptionsText(authIdentityOptions, detail.auth_identity) }}
-          </el-tag>
+        <el-tag
+          :type="getOptionsTag(authIdentityOptions, detail.auth_identity)"
+        >
+          {{ getOptionsText(authIdentityOptions, detail.auth_identity) }}
+        </el-tag>
       </div>
       <div class="info-item">
         <span>身份类型</span>
-        <span>{{ getOptionsText(identityTypeOptions, detail.identity_type) }}</span>
+        <span>{{
+          getOptionsText(identityTypeOptions, detail.identity_type)
+        }}</span>
       </div>
       <div class="info-item">
         <span>备注</span>
         <span>{{ detail.remark }}</span>
       </div>
-      <el-button type="text" size="mini" @click="handleResetPwd(detail.id)"
-        >重置密码</el-button
-      >
-      <el-button type="text" size="mini" @click="handleResetGoogle(detail.id)"
-        >重置Google密钥</el-button
-      >
     </el-dialog>
   </section>
 </template>
@@ -418,10 +427,10 @@ export default {
     },
     // 查看钱包
     handleWallet(id) {
-      this.$router.push(`/memberWallet/${id}`)
+      this.$router.push(`/memberWallet/${id}`);
     },
     handleWalletRecords(id) {
-      this.$router.push(`/memberWalletRecords/${id}`)
+      this.$router.push(`/memberWalletRecords/${id}`);
     },
   },
   mounted() {
@@ -447,17 +456,28 @@ export default {
   vertical-align: bottom;
 }
 .el-dialog__body {
+  .infoOperate {
+    margin-bottom: 20px;
+  }
   .info-item {
+    border: 1px solid #e2e2e2;
+    border-bottom: none;
     span:nth-child(1) {
-      width: 100px;
       display: inline-block;
+      width: 100px;
       font-weight: 700;
       font-size: 14px;
       color: #606266;
-      line-height: 50px;
-      text-align: right;
-      padding-right: 20px;
+      line-height: 40px;
+      padding-left: 10px;
+      border-right: 1px solid #e2e2e2;
     }
+    span:nth-child(2) {
+      padding-left: 10px;
+    }
+  }
+  .info-item:last-child {
+    border-bottom: 1px solid #e2e2e2;
   }
 }
 </style>
