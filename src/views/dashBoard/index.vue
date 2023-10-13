@@ -196,7 +196,7 @@
         </div>
       </el-col>
     </el-row>
-    <div class="box-wapper" v-if="walletList.length > 0">
+    <div class="box-wapper" v-if="walletList && walletList.length > 0">
       <div class="box" v-for="(item, index) in walletList" :key="index">
         <div class="box-title">{{ item.platform_name }}</div>
         <div class="empty" v-if="item.platform_wallet.length <= 0">

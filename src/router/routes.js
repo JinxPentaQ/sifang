@@ -62,11 +62,11 @@ let routes = [
             component: c2cOrderCollect,
             name: "C2C订单-代收",
           },
-          {
-            path: "/exchangeOrder",
-            component: exchangeOrder,
-            name: "兑换订单",
-          },
+          // {
+          //   path: "/exchangeOrder",
+          //   component: exchangeOrder,
+          //   name: "兑换订单",
+          // },
         ],
       },
       //商户管理
