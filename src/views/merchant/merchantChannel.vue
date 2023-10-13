@@ -525,7 +525,7 @@ export default {
       this.edit = row;
       this.editFormVisible = true;
     },
-    // 修改会员状态
+    // 修改代付通道状态
     handleSellStatusChange(status, row) {
       modBusinessChannelConfig({ id: row.id, sell_is_open: status }).then(
         () => {
@@ -536,7 +536,7 @@ export default {
         }
       );
     },
-    // 修改会员状态
+    // 修改代收通道状态
     handleBuyStatusChange(status, row) {
       modBusinessChannelConfig({ id: row.id, buy_is_open: status }).then(() => {
         this.$message({

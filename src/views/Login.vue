@@ -1,7 +1,7 @@
 <template>
   <div class="bgDiv">
     <div class="titContent">
-      <p>后台管理系统</p>
+      <p>恒达支付管理系统</p>
       <label>BACKSTAGE MANGEMENT SYSTEM</label>
       <!-- <p>欢迎登录</p> -->
     </div>
